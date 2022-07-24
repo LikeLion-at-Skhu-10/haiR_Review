@@ -1,1 +1,9 @@
 <h1>메인페이지</h1>
+
+{% if user.is_active %} 
+    {{ user.username }} 님 환영합니다. 
+    <a href = "{% url 'logout' %}"> logout </a> 
+{% else %} 
+    <a href = "{% url 'signup' %}"> 회원가입 </a>
+    <a href = "{% url 'login' %}"> 로그인 </a>
+{% endif %}
