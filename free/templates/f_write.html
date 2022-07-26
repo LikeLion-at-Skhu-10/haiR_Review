@@ -1,1 +1,28 @@
-<h1>자유게시판 글쓰기 페이지</h1>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css %}">
+    <title>write</title>
+</head>
+
+<body>
+    <h1>자유게시판 글쓰기 페이지</h1>
+    <form action="{% url 'create' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="title">제목</label><br>
+            <input type="text" name="title" id="title">
+        </div><br>
+        <div>
+            <label for="body">내용</label><br>
+            <textarea name="body" id="body" cols="30" rows="10"></textarea>
+        </div><br>
+        <input type="submit" value="글 생성하기">
+    </form>
+</body>
+
+</html>

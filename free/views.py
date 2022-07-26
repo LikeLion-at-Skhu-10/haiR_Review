@@ -1,3 +1,2 @@
-from django.shortcuts import render
-
-# Create your views here.
+from datetime import timezone
+from django.shortcuts import redirect, render
