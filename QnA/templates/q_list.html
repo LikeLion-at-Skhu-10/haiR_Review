@@ -1,1 +1,20 @@
+{% load static %}
+{% block content %}
+<html lang="ko">
+<head>
+        <meta charset="utf-8" />
+</head>
+<body>
 <h1>Q&A게시판 목록 페이지</h1>
+{% for qnaobj in qnaobj.all %}
+    {{qnaobj.question}}</a>
+    <p>작성일 : {{qnaobj.q_date}}</p>
+    {% if qnaobj.image %}
+    <img src = "{{ qnaobj.image.url }}" width = "250" height = "250" alt = "이미지 입니다."> 
+  <br>
+    {% endif %}
+    {% endfor %}  
+  </section>
+</body>
+</html>  
+{% endblock %}  

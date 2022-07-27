@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+import QnA.views , main.views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('' , main.views.main, name = 'main'),
+    path('q_write/' , QnA.views.q_write, name = 'q_write'),
+    path('q_list/' , QnA.views.q_list, name = 'q_list'),
+    path('q_detail/<str:id>/' , QnA.views.q_detail, name = 'q_detail'),
+    path('q_edit/<str:id>/' , QnA.views.q_edit, name = 'q_edit'),
+    path('q_delete/<str:id>/' , QnA.views.q_delete, name = 'q_delete'),                               
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

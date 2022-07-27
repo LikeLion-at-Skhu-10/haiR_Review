@@ -1,1 +1,37 @@
+{% load static %}
 <h1>Q&A게시판 디테일 페이지</h1>
+{% block content %}
+<html lang="ko">
+<head>
+        <meta charset="utf-8" />
+</head>
+<body>
+<section>
+                <h2>Detail</h2><br><br>
+                <p>작성일 : {{qna.pub_date}}</p><hr>
+                <p>내용 : {{qna.body}}</p>
+                {% if qna.image %}
+                    <img src = "{{qna.image.url}}" width = "250" height = "250">
+                {% endif %}
+                <br>
+                <a href = "{% url 'edit' qna.id %}">수정하기</a>
+                <a href = "{% url 'delete' qna.id %}">삭제하기</a>
+                <br>
+                {% for comment in qna.comments.all %}
+                    <p> {{ comment.text }} </p>
+                {% endfor %}
+                <br>
+                {% for hashtag in qna.hashtags.all %}
+                    <span>{{ hashtag.name }}</span>
+                {% endfor %}
+                    <form method = "POST" action="{% url 'detail' qna.id%}">
+                    {% csrf_token %}
+                    <p> {{ form.as_p }} </p>
+                    <input type = "submit" value= "submit">
+            </div>
+        </div>   
+    </div>
+</section>
+</body>
+</html>
+{% endblock %}

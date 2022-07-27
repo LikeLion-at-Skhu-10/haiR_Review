@@ -1,1 +1,11 @@
 <h1>로그인 페이지</h1>
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <p>username</p>
+    <input type="text" name="username">
+    <br>
+    <p>password</p>
+    <input type="text" name="password">
+    <br>
+    <input type="submit" value="로그인">
+</form>

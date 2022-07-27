@@ -1,0 +1,25 @@
+<html lang="ko">
+<head>
+                <meta charset="utf-8" />
+</head> 
+<body>
+{% block content %}
+<section class="content-section bg-light" id="about">
+    <div class="container px-4 px-lg-5 text-center">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-10">
+                <h2>Hashtag</h2>
+                {{ error_message }}
+                <form method = "POST">
+                    {% csrf_token %}
+                    <table>
+                        {{form.as_table}}
+                    </table>
+                    <button class = "btn btn-dark btn-xl" type = "submit">작성</button>
+                </form>
+            </div>
+        </div>   
+    </div>
+</section>
+</body>
+{% endblock %}

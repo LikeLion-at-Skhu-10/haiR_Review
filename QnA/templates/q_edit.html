@@ -1,8 +1,8 @@
 {% load static %}
+<html lang ="ko">
 {% block content %}
-<html lang="ko">
 <head>
-        <meta charset="utf-8" />
+    <meta charset="utf-8" />
 </head>        
 <body>
 <section>
@@ -10,12 +10,11 @@
 <form method = "POST" enctype = "multipart/form-data">
 {% csrf_token %}
 <table>
-        {{form.as_table}}
+    {{form.as_table}}
 </table> <br>
-<button type = "submit">작성</button>
-    <a href="{% url 'q_list' %}">돌아가기</a>
-       </form>
+<button  type = "submit">작성</button>
+<a href="{% url 'q_list' %}"> 돌아가기</a>
+</form>
 </section>
-</body>
-</html>
+</html> 
 {% endblock %}

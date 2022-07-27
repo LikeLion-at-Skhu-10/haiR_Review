@@ -136,6 +136,8 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main', 'static')
+    os.path.join(BASE_DIR, 'q_list', 'static')
+
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
