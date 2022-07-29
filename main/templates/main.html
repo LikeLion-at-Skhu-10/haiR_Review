@@ -1,1 +1,12 @@
+{% load static %} 
+    {% block content %} 
 <h1>메인페이지</h1>
+<a href="{% url 'f_write' %}">자유게시판 작성하기</a>
+<a href="{% url 'f_list' %}">자유게시판 목록</a>
+<a href="{% url 'f_hashtag' %}">자유게시판 hashtag</a>
+<br>
+<a href="{% url 'r_write' %}">리뷰게시판 작성하기</a>
+<a href="{% url 'r_list' %}">리뷰게시판 목록</a>
+<a href="{% url 'r_hashtag' %}">자유게시판 hashtag</a>
+
+{% endblock %}
