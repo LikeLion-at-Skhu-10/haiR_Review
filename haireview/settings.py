@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -135,10 +136,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'main', 'static')
+    os.path.join(BASE_DIR, 'haiR_Review', 'static')
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'main', 'static')
 
 STATIC_URL = 'static/'
 

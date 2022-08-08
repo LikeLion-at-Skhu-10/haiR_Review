@@ -5,23 +5,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/f_write.css' %}">
+    <link rel="login logo" type="image/x-icon" href="{% static 'img/logo2.jpg' %}">
     <title>write</title>
 </head>
 
 <body>
-    <h1>자유게시판 글쓰기 페이지</h1>
+    <nav class="navbar">
+
+        <div class="navbar__logo">
+            <i class="fas fa-blog"></i>
+            <img src="{% static 'img/logo3.png' %}">
+        </div>
+
+        <ul class="navbar__menu">
+            <li><a href="#">미용실 익명 리뷰</a></li>
+            <li><a href="#">헤어 Q&A</a></li>
+            <li><a href="#">미용실 후기</a></li>
+        </ul>
+
+        <ul class="navbar__icons">
+            <li><i class="fab fa-google"></i></li>
+            <li><i class="fab fa-slack"></i></li>
+        </ul>
+
+        <a href="#" class="navbar__toggleBtn">
+            <i class="fas fa-hamburger"></i>
+        </a>
+    </nav>
     <form action="{% url 'create' %}" method="POST">
         {% csrf_token %}
         <div>
-            <label for="title">제목</label><br>
-            <input type="text" name="title" id="title">
-        </div><br>
+            <!-- <label for="title">제목</label><br> -->
+            <input type="text" name="title" id="title" cols="70" placeholder="제목을 입력해 주세요.">
+        </div>
         <div>
-            <label for="body">내용</label><br>
-            <textarea name="body" id="body" cols="30" rows="10"></textarea>
+            <!-- <label for="body">내용</label><br> -->
+            <textarea name="body" id="body" cols="70" rows="10">내용을 입력해 주세요.</textarea>
         </div><br>
-        <input type="submit" value="글 생성하기">
+        <input type="submit" value="작성">
     </form>
 </body>
 
