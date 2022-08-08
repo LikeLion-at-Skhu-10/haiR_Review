@@ -15,12 +15,15 @@ Including another URLconf
 """
 from xml.dom.minidom import Document
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 import main.views
 import free.views
-import review.views
+import bookmark.views
+import review.views 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import include
+from bookmark.views import BookmarkListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,4 +40,7 @@ urlpatterns = [
     path('r_edit/<str:id>/', review.views.r_edit, name='r_edit'),
     path('delete/<str:id>/', review.views.delete, name='delete'),
     path('r_hashtag/', review.views.r_hashtag, name='r_hashtag'),
+    path('', include('account.urls')),
+    path('', include('bookmark.urls')),
+
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

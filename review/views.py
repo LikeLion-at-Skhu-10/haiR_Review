@@ -1,3 +1,4 @@
+from email.policy import default
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BlogForm, r_commentForm, HashtagForm
 from django.utils import timezone
@@ -20,6 +21,8 @@ def r_write(request, blog = None) :
 
 def r_list(request):
     blogs = Blog.objects
+    #default_r_clikes = blogs.r_clikes
+    # blogs.r_clikes = default_r_clikes +1
     return render(request, 'r_list.html', {'blogs':blogs})
 
 def r_detail(request, id):
@@ -31,9 +34,14 @@ def r_detail(request, id):
             comment.blog_id = blog
             comment.text = form.cleaned_data['text']
             comment.save()
+
+            
             return redirect('r_detail', id)
+            
     else :
         form = r_commentForm()
+
+        
         return render(request, 'r_detail.html', {'blog':blog, 'form':form})
 
 
@@ -71,3 +79,4 @@ def r_hashtag(request, hashtag=None) :
     else :
         form = HashtagForm(instance = hashtag)
         return render(request, 'r_hashtag.html', {'form':form})
+

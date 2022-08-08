@@ -1,5 +1,7 @@
 {% extends 'main.html' %} 
 {% block content %} 
+
+
 <h1>리뷰게시판 목록 페이지</h1>
 {% for blogs in blogs.all %} 
 <h3>후기_제목 : <a href="{% url 'r_detail' blogs.id %}">{{blogs.r_title}}</a></h3>

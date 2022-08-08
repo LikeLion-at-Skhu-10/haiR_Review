@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'QnA.apps.QnaConfig',
     'free.apps.FreeConfig',
     'main.apps.MainConfig',
+    'bookmark.apps.BookmarkConfig',
+
 ]
 
 MIDDLEWARE = [
