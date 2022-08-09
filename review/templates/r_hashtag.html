@@ -1,0 +1,11 @@
+{% extends 'main.html' %} 
+{% block content %} 
+<h1>리뷰게시판 hashtag 페이지</h1>
+{{ error_message }}
+    {% csrf_token %} 
+    <table>
+        {{form.as_table}}
+    </table>
+    <button type="submit">제출하기</button>
+</form>
+{% endblock %}

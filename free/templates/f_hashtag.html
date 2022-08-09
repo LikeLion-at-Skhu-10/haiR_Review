@@ -1,0 +1,12 @@
+{% extends 'main.html' %} 
+{% block content %} 
+<h1>자유게시판 헤시태그 페이지</h1>
+    {{ error_message }}
+    <form method="POST">
+    {% csrf_token %} 
+    <table>
+        {{form.as_table}}
+    </table>
+    <button type="submit">제출하기</button>
+    </form>
+{% endblock %}
