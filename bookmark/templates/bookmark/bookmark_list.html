@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="btn-group">
-        <a href ="#" class = "btn btn-info">Add Bookmark</a>
+        <a href ="{% url 'bookmark_create' %}" class = "btn btn-info">Add Bookmark</a>
     </div>
     <p></p>
     <table class = "table">
@@ -25,10 +25,10 @@
             {% for bookmark in object_list %}
             <tr>
                 <td>{{forloop.counter}}</td>
-                <td><a href="#">{{bookmark.site_name}}</a></td>
+                <td><a href="{% url 'bookmark_detail' pk=bookmark.id %}">{{bookmark.site_name}}</a></td>
                 <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.url}}</a> </td>
-                <td><a href="#" class="btn btn-success btn-sm">Modify</a></td>
-                <td><a href="#" class="btn btn-danger btn-sm">Delete</a></td>
+                <td><a href="{% url 'bookmark_update' pk=bookmark.id %}" class="btn btn-success btn-sm">Modify</a></td>
+                <td><a href="{% url 'bookmark_delete' pk=bookmark.id %}" class="btn btn-danger btn-sm">Delete</a></td>
             </tr>
             {% endfor %}
         </tbody>
