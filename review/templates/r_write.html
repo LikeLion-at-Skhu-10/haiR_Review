@@ -1,1 +1,47 @@
-<h1>리뷰게시판 글쓰기 페이지</h1>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/r_write.css' %}">
+    <link rel="login logo" type="image/x-icon" href="{% static 'img/logo2.jpg' %}">
+    <title>r_write</title>
+</head>
+
+<body>
+    <nav class="navbar">
+
+        <div class="navbar__logo">
+            <i class="fas fa-blog"></i>
+            <img src="{% static 'img/logo3.png' %}">
+        </div>
+
+        <ul class="navbar__menu">
+            <li><a href="#">미용실 익명 리뷰</a></li>
+            <li><a href="#">헤어 Q&A</a></li>
+            <li><a href="#">미용실 후기</a></li>
+        </ul>
+
+        <ul class="navbar__icons">
+            <li><i class="fab fa-google"></i></li>
+            <li><i class="fab fa-slack"></i></li>
+        </ul>
+
+        <a href="#" class="navbar__toggleBtn">
+            <i class="fas fa-hamburger"></i>
+        </a>
+    </nav>
+    {% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <label class="form_table">{{form.as_table}}</label>
+        </table>
+        <button type="submit">작성</button>
+    </form>
+    {% endblock %}
+</body>
+
+</html>

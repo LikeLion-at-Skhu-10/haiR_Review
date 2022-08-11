@@ -1,30 +1,11 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <title>List</title>
-</head>
-
-<body>
-    <h1>자유게시판 목록 페이지</h1>
-    <a href="{% url 'f_write' %}">글 작성하러 가기</a>
-
-    <br><br>
-
-    {% for post in posts %}
-
-    <a href="{% url 'f_detail' post.id %}">
-        <p class="html_title">{{ post.title }}</p>
-    </a>
-    <br>
-    <p class="html_date">{{ post.date }}</p>
-    <br><br>
-
-    {% endfor %}
-</body>
-
-</html>
+{% extends 'main.html' %} 
+{% load static %} 
+{% block content %}  
+<h1>자유게시판 목록 페이지</h1>
+{% for blogs in blogs.all %} 
+<h2>제목 : <a href="{% url 'f_detail' blogs.id %}">{{blogs.p_title}}</a></h2>
+<p>작성일자 : {{blogs.p_date}}</p>
+<p>조회수 : {{blogs.p_clikes}}</p>
+<p>추천수 : {{blogs.p_likes}}</p><hr>
+{% endfor %} 
+{% endblock %}
