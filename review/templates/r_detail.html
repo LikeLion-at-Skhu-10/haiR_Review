@@ -1,1 +1,37 @@
-<h1>리뷰게시판 디테일 페이지</h1>
+{% extends 'main.html' %} 
+{% block content %} 
+
+
+<h1>리뷰게시판 디테일 페이지</h1><hr>
+<h2>후기_제목 : {{blog.r_title}}</h2>
+<p>작성일자 : {{blog.r_date}}</p>
+<h3>후기_내용 : {{blog.r_body}} </h3>
+<p>작성자 : {{blog.r_nickname}}</p> 
+<!-- <p>조회수 : {{blog.r_clikes}}</p> -->
+<p>추천수 : {{blog.r_likes}}</p><hr>
+{% if blog.r_photo %} 
+    <img src="{{ blog.r_photo.url }}" width = "250" height = "250" alt="r_photo">
+{% endif %}
+{% if blog.r_receipt %} 
+    <img src="{{ blog.r_receipt.url }}" width = "250" height = "250" alt="r_receipt">
+{% endif %}
+<br>
+<a href="{% url 'r_edit' blog.id %}">수정하기</a>
+<a href="{% url 'delete' blog.id %}">삭제하기</a>
+<br>
+<br><hr>
+{% for comment in blog.comments.all %} 
+    <p> {{ comment.text }} </p>
+{% endfor %} 
+<br><hr>
+{% for hashtag in blog.hashtags.all %} 
+    <span>{{ hashtag.name }} </span>
+{% endfor %}  
+<form method="POST" action="{% url 'r_detail' blog.id %}">
+    {% csrf_token %} 
+    <p> {{ form.as_p }}</p>
+    <input type="submit" value="submit">
+</form>
+{% endblock %}
+
+

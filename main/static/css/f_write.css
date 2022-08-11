@@ -12,6 +12,10 @@
     font-style: normal;
 }
 
+body {
+    background-color: #E6DECF;
+}
+
 #title {
     width: 70px;
 }

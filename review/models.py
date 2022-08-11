@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class Blog(models.Model):
 
     r_title = models.CharField(max_length=200)
@@ -18,11 +16,6 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.r_title
-
-    # @property
-    # def update_r_clikes(self):
-    #     self.r_clikes = self.r_clikes + 1
-    #     self.save()
 
 class r_comment(models.Model) :
     def __str__(self) :

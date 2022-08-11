@@ -1,9 +1,27 @@
-<h1>자유게시판 디테일 페이지</h1>
-<h2>제목</h2>
-{{ blog_detail.title }}
-
-<h2>날짜</h2>
-{{ blog_detail.date }}
-
-<h2>본문</h2>
-{{ blog_detail.body }}
+{% load static %}  
+<h1>자유게시판 디테일 페이지</h1><hr>
+<h4>제목 : {{blog.p_title}}</h4>
+<p>작성일자 : {{blog.p_date}}</p>
+<p>글 내용 : {{blog.p_body}}</p>
+<p>조회수 : {{blogs.p_clikes}}</p>
+<p>추천수 : {{blogs.p_likes}}</p><hr>
+{% if blog.p_photo %} 
+    <img src="{{ blog.p_photo.url }}" width = "250" height = "250" alt="p_photo">
+{% endif %}
+<br> 
+<a href="{% url 'f_edit' blog.id %}">수정하기</a>
+<a href="{% url 'f_delete' blog.id %}">삭제하기</a>
+<br>
+<br><hr>
+{% for comment in blog.comments.all %} 
+    <p> {{ comment.text }} </p>
+{% endfor %} 
+<br><hr>
+{% for hashtag in blog.hashtags.all %} 
+    <span> {{ hashtag.name }} </span>
+{% endfor %}
+<form method="POST" action="{% url 'f_detail' blog.id %}">
+    {% csrf_token %} 
+    <p> {{ form.as_p }}</p>
+    <input type="submit" value="submit">
+</form>

@@ -1,1 +1,14 @@
+{% extends 'main.html' %} 
+{% block content %} 
+
+
 <h1>리뷰게시판 목록 페이지</h1>
+{% for blogs in blogs.all %} 
+<h3>후기_제목 : <a href="{% url 'r_detail' blogs.id %}">{{blogs.r_title}}</a></h3>
+<p>작성일자 : {{blogs.r_date}}</p>
+<p>작성자 : {{blogs.r_nickname}}</p> 
+<p>조회수 : {{blogs.r_clikes}}</p>
+<p>추천수 : {{blogs.r_likes}}</p><hr>
+{% endfor %}
+{% endblock %}
+
