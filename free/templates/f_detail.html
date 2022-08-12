@@ -5,12 +5,13 @@
 <h4>제목 : {{blog.p_title}}</h4>
 <p>작성일자 : {{blog.p_date}}</p>
 <p>글 내용 : {{blog.p_body}}</p>
-<p>조회수 : {{blogs.p_clikes}}</p>
+<p>조회수 : {{blog.p_clicks}}</p>
 <p>추천수 : {{blogs.p_likes}}</p><hr>
 {% if blog.p_photo %} 
     <img src="{{ blog.p_photo.url }}" width = "250" height = "250" alt="p_photo">
 {% endif %}
 <br> 
+<a href ="{% url 'bookmark_create' %}" class = "btn btn-info">Add Bookmark</a>
 <a href="{% url 'f_edit' blog.id %}">수정하기</a>
 <a href="{% url 'f_delete' blog.id %}">삭제하기</a>
 <br>

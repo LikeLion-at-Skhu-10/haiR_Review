@@ -2,10 +2,20 @@
 {% load static %} 
 {% block content %}  
 <h1>자유게시판 목록 페이지</h1>
+<!--정렬-->
+<form method="GET" action="{% url 'r_list' %}">
+    <div class="col-4">
+    <select name="sort" id="sort">
+        <option value="p_date" id="p_date">최신순</option>
+        <option value="p_clicks" id="p_clicks">조회수순</option>
+    </select>
+    <button class="btn btn-primary" type="submit" value="">정렬</button>
+    </div>
+</form>
 {% for blogs in blogs.all %} 
 <h2>제목 : <a href="{% url 'f_detail' blogs.id %}">{{blogs.p_title}}</a></h2>
 <p>작성일자 : {{blogs.p_date}}</p>
-<p>조회수 : {{blogs.p_clikes}}</p>
+<p>조회수 : {{blogs.p_clicks}}</p>
 <p>추천수 : {{blogs.p_likes}}</p><hr>
 {% endfor %} 
 {% endblock %}

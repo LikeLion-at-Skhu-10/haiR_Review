@@ -21,12 +21,17 @@ def r_write(request, blog = None) :
 
 def r_list(request):
     blogs = Blog.objects
-    #default_r_clikes = blogs.r_clikes
-    # blogs.r_clikes = default_r_clikes +1
-    return render(request, 'r_list.html', {'blogs':blogs})
+    sort = request.GET.get('sort','')
+    if sort == 'r_clicks':
+        blogs = Blog.objects.all().order_by('-r_clicks','-r_date')
+    else:
+        blogs = Blog.objects.all().order_by('-r_date')
+
+    return render(request, 'r_list.html', {'blogs':blogs, 'sort':sort})
 
 def r_detail(request, id):
     blog = get_object_or_404(Blog, id=id)
+
     if request.method == "POST" :
         form = r_commentForm(request.POST)
         if form.is_valid() :
@@ -34,14 +39,13 @@ def r_detail(request, id):
             comment.blog_id = blog
             comment.text = form.cleaned_data['text']
             comment.save()
-
-            
             return redirect('r_detail', id)
             
     else :
         form = r_commentForm()
 
-        
+        default_r_clicks = blog.r_clicks
+        blog.r_clicks = default_r_clicks + 1
         return render(request, 'r_detail.html', {'blog':blog, 'form':form})
 
 

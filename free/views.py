@@ -21,10 +21,18 @@ def f_write(request, blog = None) :
 
 def f_list(request):
     blogs = Blog.objects
-    return render(request, 'f_list.html', {'blogs':blogs})
+    sort = request.GET.get('sort','')
+    if sort == 'p_clicks':
+        blogs = Blog.objects.all().order_by('-p_clicks','-p_date')
+    else:
+        blogs = Blog.objects.all().order_by('-p_date')
+
+    return render(request, 'f_list.html', {'blogs':blogs, 'sort':sort})
 
 def f_detail(request, id):
     blog = get_object_or_404(Blog, id=id)
+
+    
     if request.method == "POST" :
         form = p_commentForm(request.POST) 
         if form.is_valid() :
