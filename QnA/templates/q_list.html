@@ -1,0 +1,9 @@
+<h1>Q&A게시판 목록 페이지</h1>
+
+{% for qnaobj in qnaobj.all %} 
+<h3>후기_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.question}}</a></h3>
+<p>작성일자 : {{ qnaobj.q_date }}</p>
+<p>작성자 : {{ qnaobj.name }}</p> 
+<p>조회수 : {{ qnaobj.q_clicks }}</p>
+<p>추천수 : {{ qnaobj.q_likes }}</p><hr>
+{% endfor %}

@@ -1,0 +1,30 @@
+<h1>회원가입 페이지</h1>
+
+<form action = " " method ="POST">
+    {% csrf_token %} 
+    
+    사용자 ID : <input name="username" type="text" required autofocus> 
+    <br> 
+    닉네임 : <input name = "name" type ="text" required> 
+    <br>
+    이메일 : <input name="email" type="email" required>
+    <br>
+    비밀번호 : <input name="password1" type="password" required>
+    <br>
+    비밀번호 확인 : <input name="password2" type="password" required>
+    <br>
+
+    <div>
+        {% for field in registration_form %} 
+            {% for error in field.errors %}
+                <p style="color : red"> {{ error }}</p> 
+            {% endfor %}
+
+            {% if registration_form.non_field_errors %} 
+            <div style="color:red"> {{registeration_form.non_field_errors }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <button type="submit"> 회원가입하기 </button>
+</form>
