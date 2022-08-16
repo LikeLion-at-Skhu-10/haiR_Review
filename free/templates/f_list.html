@@ -3,7 +3,7 @@
 {% block content %}  
 <h1>자유게시판 목록 페이지</h1>
 <!--정렬-->
-<form method="GET" action="{% url 'r_list' %}">
+<form method="GET" action="{% url 'f_list' %}">
     <div class="col-4">
     <select name="sort" id="sort">
         <option value="p_date" id="p_date">최신순</option>
@@ -15,7 +15,17 @@
 {% for blogs in blogs.all %} 
 <h2>제목 : <a href="{% url 'f_detail' blogs.id %}">{{blogs.p_title}}</a></h2>
 <p>작성일자 : {{blogs.p_date}}</p>
+{{blog.update_counter}}
 <p>조회수 : {{blogs.p_clicks}}</p>
-<p>추천수 : {{blogs.p_likes}}</p><hr>
+<p>좋아요수 : {{blogs.f_likes}}</p><hr>
 {% endfor %} 
+
+<!-- templates/free/free_list.html -->
+
+<tr class="text-center" style="cursor:pointer;" onclick="location.href='/free/{{ free.id }}/'">
+    <td>{{ free.id }}</td>
+    <td>{{ free.title|truncatechars:30 }}
+        {% if free.comments %}
+        <span>[{{ free.comments }}]</span>
+        {% endif %}
 {% endblock %}

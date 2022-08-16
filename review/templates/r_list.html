@@ -16,9 +16,10 @@
 {% for blogs in blogs.all %} 
 <h3>후기_제목 : <a href="{% url 'r_detail' blogs.id %}">{{blogs.r_title}}</a></h3>
 <p>작성일자 : {{blogs.r_date}}</p>
-<p>작성자 : {{blogs.r_nickname}}</p> 
+<p>작성자 : {{blogs.r_nickname}}</p>
+{{blog.r_update_counter}}
 <p>조회수 : {{blogs.r_clicks}}</p>
-
+<p>좋아요수 : {{blogs.r_likes}}</p>
 {% endfor %}
 {% endblock %}
 

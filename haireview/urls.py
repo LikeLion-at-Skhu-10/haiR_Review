@@ -20,10 +20,17 @@ import main.views
 import free.views
 import bookmark.views
 import review.views 
+import account.views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
 from bookmark.views import BookmarkListView
+
+from django.urls import path
+
+
+
+app_name = 'articles'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,5 +49,9 @@ urlpatterns = [
     path('r_hashtag/', review.views.r_hashtag, name='r_hashtag'),
     path('', include('account.urls')),
     path('', include('bookmark.urls')),
+    path('f_like/<int:blog_id>/', free.views.f_likes, name="f_likes"),
+    path('r_like/<int:blog_id>/', review.views.r_likes, name="r_likes"),
+    path('r_clip/<int:blog_id>/', review.views.r_clip, name="r_clips"),
+
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -7,7 +7,24 @@
 <p>작성일자 : {{blog.r_date}}</p>
 <h3>후기_내용 : {{blog.r_body}} </h3>
 <p>작성자 : {{blog.r_nickname}}</p> 
-<p>조회수 : {{blog.r_clicks}}</p><hr>
+{{blog.r_update_counter}}
+<p>조회수 : {{blog.r_clicks}}</p>
+<p>좋아요수 : {{blog.r_likes}}</p>
+<a href="{% url 'r_likes' blog.id %}">
+    {% if user in blog.r_like.all %} 
+    취소
+    {% else %} 
+    좋아요
+    {% endif %}
+</a>
+<p>스크랩수 : {{blog.r_clips}}</p>
+<a href="{% url 'r_clips' blog.id %}">
+    {% if user in blog.r_clip.all %} 
+    취소
+    {% else %} 
+    스크랩
+    {% endif %}
+</a>
 
 {% if blog.r_photo %} 
     <img src="{{ blog.r_photo.url }}" width = "250" height = "250" alt="r_photo">

@@ -78,3 +78,17 @@ def f_hashtag(request, hashtag=None) :
     else :
         form = HashtagForm(instance = hashtag)
         return render(request, 'f_hashtag.html', {'form':form})
+
+def f_likes(request, blog_id):
+    like_b = get_object_or_404(Blog, id=blog_id)
+    if request.user in like_b.f_like.all():
+        like_b.f_like.remove(request.user)
+        like_b.f_likes -= 1
+        like_b.save()
+    else:
+        like_b.f_like.add(request.user)
+        like_b.f_likes += 1
+        like_b.save()
+    return redirect('/f_detail/' + str(blog_id))
+
+

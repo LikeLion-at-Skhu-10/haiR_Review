@@ -44,8 +44,6 @@ def r_detail(request, id):
     else :
         form = r_commentForm()
 
-        default_r_clicks = blog.r_clicks
-        blog.r_clicks = default_r_clicks + 1
         return render(request, 'r_detail.html', {'blog':blog, 'form':form})
 
 
@@ -84,3 +82,26 @@ def r_hashtag(request, hashtag=None) :
         form = HashtagForm(instance = hashtag)
         return render(request, 'r_hashtag.html', {'form':form})
 
+def r_likes(request, blog_id):
+    like_b = get_object_or_404(Blog, id=blog_id)
+    if request.user in like_b.r_like.all():
+        like_b.r_like.remove(request.user)
+        like_b.r_likes -= 1
+        like_b.save()
+    else:
+        like_b.r_like.add(request.user)
+        like_b.r_likes += 1
+        like_b.save()
+    return redirect('/r_detail/' + str(blog_id))
+
+def r_clip(request, blog_id):
+    like_b = get_object_or_404(Blog, id=blog_id)
+    if request.user in like_b.r_clip.all():
+        like_b.r_clip.remove(request.user)
+        like_b.r_clips -= 1
+        like_b.save()
+    else:
+        like_b.r_clip.add(request.user)
+        like_b.r_clips += 1
+        like_b.save()
+    return redirect('/r_detail/' + str(blog_id))

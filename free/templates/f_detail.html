@@ -5,8 +5,18 @@
 <h4>제목 : {{blog.p_title}}</h4>
 <p>작성일자 : {{blog.p_date}}</p>
 <p>글 내용 : {{blog.p_body}}</p>
+{{blog.update_counter}}
 <p>조회수 : {{blog.p_clicks}}</p>
-<p>추천수 : {{blogs.p_likes}}</p><hr>
+<p>좋아요수 : {{blog.f_likes}}</p><hr>
+
+<a href="{% url 'f_likes' blog.id %}">
+    {% if user in blog.f_like.all %} 
+    취소
+    {% else %} 
+    좋아요
+    {% endif %}
+</a>
+
 {% if blog.p_photo %} 
     <img src="{{ blog.p_photo.url }}" width = "250" height = "250" alt="p_photo">
 {% endif %}
