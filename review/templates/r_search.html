@@ -1,0 +1,28 @@
+{% load static %}
+
+<html lang="ko">
+<head>
+        <meta charset="utf-8" />
+</head>
+
+{% block content %}
+<body>
+            {% if r_searched %}        
+                    <h1> 검색하신 {{ r_searched }} 에 관한 정보입니다. </h1>
+                    <br>
+                    {% for Review in r_serobj %}      
+                    {{ Review.r_title  }} <br>
+                    {{ Review.r_body  }}
+                    {% if Review.q_photo %}
+                    <img src = "{{ Review.r_photo.url }}" width = "250" height = "250" alt = "이미지 입니다."> 
+                    <br>
+                    {% endif %}
+                    {% endfor %}
+                    {% else %}       
+                    <h1> 찾고 있는 검색어를 검색창에 입력해주세요. </h1>
+            {% endif %}
+  
+    <!--검색-->
+</body>
+</html>
+{% endblock %}

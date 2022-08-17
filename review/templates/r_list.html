@@ -1,0 +1,13 @@
+<h1>리뷰게시판 목록 페이지</h1>
+<form  method="POST" action="{% url 'r_search' %}">
+    {% csrf_token %}        
+    <input type="search" placeholder="검색어를 입력해주쇼" name="r_searched" aria-label="검색창">
+    <button type="submit"> 검색 </button>
+{% for reviews in reviews.all %} 
+<h3>후기_제목 : <a href="{% url 'r_detail' reviews.id %}">{{reviews.r_title}}</a></h3>
+<p>작성일자 : {{reviews.r_date}}</p>
+<p>작성자 : {{reviews.name}}</p> 
+<p>조회수 : {{reviews.r_clikes}}</p>
+<p>추천수 : {{reviews.r_likes}}</p><hr>
+{% endfor %}
+

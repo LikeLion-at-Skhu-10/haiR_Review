@@ -1,0 +1,50 @@
+{% load static %}
+
+<html lang="ko">
+<head>
+        <meta charset="utf-8" />
+</head>
+
+{% block content %}
+<body>
+
+
+            {% if m_searched %}        
+                    <h1> 검색하신 {{ m_searched }} 에 관한 정보입니다. </h1>
+                    <br>
+                    {% for Question in m_qsearch %}      
+                    QnA게시판 질문:{{ Question.question }} <br>
+                    작성일:{{ Question.q_date }}<br>
+                    QnA사진:{{ Question.q_photo }}<br>
+                    {% if Question.q_photo %}
+    <img src = "{{ Question.q_photo.url }}" width = "250" height = "250" alt = "이미지 입니다."> 
+  <br>
+                    {% endif %}
+                    {% endfor %}       
+                    {% for Free in m_fsearch %}
+                    자유게시판:{{ Free.p_title }} <br>
+                    자유게시판 내용:{{ Free.p_body }}<br>
+                    자유게시판 날짜{{ Free.p_date }}<br>
+                    {% if Free.p_photo %}
+    <img src = "{{ Free.p_photo.url }}" width = "250" height = "250" alt = "이미지 입니다."> 
+  <br>
+                    {% endif %}
+                    {% endfor %}
+                    <br>     
+                    {% for Review in m_rsearch %}
+                    리뷰게시판 제목:{{ Review.r_title }} <br>
+                    리뷰게시판 내용:{{ Review.r_body }}<br>
+                    리뷰시간:{{ Review.r_date }}<br>
+                    {% if Review.r_photo %}
+    <img src = "{{ Review.r_photo.url }}" width = "250" height = "250" alt = "이미지 입니다."> 
+  <br>
+                    {% endif %}
+                    {% endfor %}
+                    {% else %}       
+                    <h1> 찾고 있는 검색어를 검색창에 입력해주세요. </h1>
+            {% endif %}
+  
+    <!--검색-->
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,23 @@
+<h1>로그인 페이지</h1>
+
+<form action = " " method ="POST">
+    {% csrf_token %} 
+    ID <input type = "username" name="username" required="required">
+    <br>
+    PASSWORD <input type="password" name="password" required="required">
+    <br>
+
+    
+    {% for field in login_form %}
+        {% for error in field.errors %}
+            <p style="color: red"> {{ error }}</p>
+        {% endfor %}
+
+        {% if login_form.non_fields_errors %} 
+            <p style="color:red">{{ login_form.non_field_errors }}</p>
+        {% endif %}
+    {% endfor %} 
+
+    <button type = "submit"> 로그인 </button>
+
+</form>

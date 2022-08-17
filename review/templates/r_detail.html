@@ -1,0 +1,42 @@
+<h1>리뷰게시판 디테일 페이지</h1>
+
+<h4>제목 : {{ review.r_title }}</h4>
+<p>작성자 : {{ review.name }} </p>
+<p>작성일자 : {{review.r_date}}</p>
+<p>조회수 : {{review.r_clikes}}</p>
+<p>추천수 : {{review.r_likes}}</p><hr>
+
+<p>글 내용 : {{review.r_body}}</p>
+
+{% if review.r_photo %} 
+    후기 사진 : <br>
+    <img src="{{ review.r_photo.url }}" width = "250" height = "250" alt="r_photo">
+{% endif %}
+<br> 
+{% if review.r_receipt %} 
+    영수증 인증 : <br>
+    <img src="{{ review.r_receipt.url }}" width = "250" height = "250" alt="r_receipt">
+{% endif %}
+
+<br>
+{% for hashtag in review.hashtags.all %} 
+    <span> {{ hashtag.name }} </span>
+{% endfor %}
+
+<br>
+<hr>
+<br>
+<a href="{% url 'r_edit' review.id %}">수정하기</a>
+<a href="{% url 'r_delete' review.id %}">삭제하기</a>
+<br>
+<br><hr>
+{% for comment in review.comments.all %} 
+    <p> {{ comment.name }} : {{ comment.text }} </p>
+{% endfor %} 
+<br><hr>
+
+<form method="POST" action="{% url 'r_detail' review.id %}">
+    {% csrf_token %} 
+    <p> {{ form.as_p }}</p>
+    <input type="submit" value="submit">
+</form>
