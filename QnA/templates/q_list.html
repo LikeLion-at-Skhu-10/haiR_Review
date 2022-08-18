@@ -1,0 +1,24 @@
+<h1>Q&A게시판 목록 페이지</h1>
+
+<!-- 정렬 -->
+<form method="GET" action="{% url 'q_list' %}">
+    <div class="col-4">
+    <select name="q_sort" id="q_sort">
+        <option value="q_date" id="q_date">최신순</option>
+        <option value="q_clips" id="q_clips">조회수순</option>
+    </select>
+    <button class="btn btn-primary" type="submit" value="">정렬</button>
+    </div>
+</form>
+
+<a href="{% url 'main' %}">홈</a>
+<hr>
+
+{% for qnaobj in qnaobj.all %} 
+<h3>후기_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.question}}</a></h3>
+<p>작성일자 : {{ qnaobj.q_date }}</p>
+<p>작성자 : {{ qnaobj.nickname }}</p> 
+<p>조회수 : {{ qnaobj.q_clips }}</p>
+<p>추천수 : {{ qnaobj.q_likes }}</p><hr>
+{% endfor %}
+

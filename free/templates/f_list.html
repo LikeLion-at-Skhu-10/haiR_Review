@@ -1,0 +1,21 @@
+<h1>자유게시판 목록 페이지</h1>
+
+<!-- 정렬 -->
+<form method="GET" action="{% url 'f_list' %}">
+    <div class="col-4">
+    <select name="f_sort" id="f_sort">
+        <option value="p_date" id="p_date">최신순</option>
+        <option value="p_clicks" id="p_clicks">조회수순</option>
+    </select>
+    <button class="btn btn-primary" type="submit" value="">정렬</button>
+    </div>
+</form>
+
+{% for frees in frees.all %} 
+<h2>제목 : <a href="{% url 'f_detail' frees.id %}">{{frees.p_title}}</a></h2>
+<p>작성일자 : {{frees.p_date}}</p>
+<p>조회수 : {{ frees.p_clikes }}</p>
+<p>추천수 : {{frees.p_likes}}</p><hr>
+{% endfor %} 
+
+<a href="{% url 'main' %}">홈</a>

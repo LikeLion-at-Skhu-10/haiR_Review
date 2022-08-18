@@ -1,0 +1,11 @@
+<h1>헤시태그 페이지</h1>
+
+{{ error_message }}
+
+<form method="POST">
+    {% csrf_token %} 
+    <table>
+        {{form.as_table}}
+    </table>
+    <button type="submit">추가하기</button>
+</form>

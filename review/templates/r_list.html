@@ -1,0 +1,21 @@
+<h1>리뷰게시판 목록 페이지</h1>
+
+<!-- 정렬 -->
+<form method="GET" action="{% url 'r_list' %}">
+    <div class="col-4">
+    <select name="r_sort" id="r_sort">
+        <option value="r_date" id="r_date">최신순</option>
+        <option value="r_clicks" id="r_clicks">조회수순</option>
+    </select>
+    <button class="btn btn-primary" type="submit" value="">정렬</button>
+    </div>
+</form>
+
+{% for reviews in reviews.all %} 
+<h3>후기_제목 : <a href="{% url 'r_detail' reviews.id %}">{{reviews.r_title}}</a></h3>
+<p>작성일자 : {{reviews.r_date}}</p>
+<p>작성자 : {{ reviews.name }}</p> 
+<p>조회수 : {{reviews.r_clips}}</p>
+<p>추천수 : {{reviews.r_likes}}</p><hr>
+{% endfor %}
+
