@@ -20,6 +20,15 @@ class Review(models.Model):
     def __str__(self):
         return self.r_title
 
+    def r_summary(self):
+        return self.r_title[:20]
+
+    @property
+    def r_update_counter(self) :
+        self.r_clicks +=1
+        self.save()
+
+
 class r_comment(models.Model) :
     def __str__(self) :
         return self.text

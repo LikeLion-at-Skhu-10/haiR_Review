@@ -21,17 +21,23 @@ def q_write(request, qna = None):
             form = QuestionForm (instance= qna)
             return render(request, 'q_write.html' , {'form':form})
 
-#질문 목록
+#질문 목록, 정렬추가
 def q_list(request):
     qnaobj = Question.objects
-    return render(request, 'q_list.html' , {'qnaobj':qnaobj})
+    q_sort = request.GET.get('q_sort', '')
+    if q_sort == 'q_clicks':
+        qnaobj = Question.objects.all().order_by('-q_clicks', '-q_date')
+    else:
+        qnaobj = Question.objects.all().order_by('-q_date')
+    return render(request, 'q_list.html' , {'qnaobj':qnaobj, 'q_sort':q_sort})
+
 
 #질문글 상세페이지
 def q_detail(request, id):
     qna = get_object_or_404(Question, id=id)
     if request.method == "POST" :
-       form = AnswerForm(request.POST, request.FILES)
-       if form.is_valid() :
+        form = AnswerForm(request.POST, request.FILES)
+    if form.is_valid() :
             answer = form.save(commit = False)
             answer.qna_id = qna
             answer.text = form.cleaned_data['text']

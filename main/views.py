@@ -1,11 +1,19 @@
 from django.shortcuts import render, redirect
 from .forms import HashtagForm
 from .models import Hashtag
+from .models import Review
+from .models import Free
+from .models import Question
+from django.core.paginator import Paginator  
 
-# Create your views here.
+# Create your views here.s
 
 def main(request):
-    return render(request, 'main.html')
+    reviews = Review.objects.all().order_by('-r_clicks')[:3]
+    qnaobj = Question.objects.all().order_by('-q_clicks')[:3]
+    frees = Free.objects.all().order_by('-p_clicks')[:3]
+    context = {'reviews':reviews, 'qnaobj':qnaobj, 'frees':frees}
+    return render(request, 'main.html', context)
 
 def hashtag(request, hashtag=None) :
     if request.method == 'POST' :

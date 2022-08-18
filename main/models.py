@@ -3,6 +3,7 @@ from django.db import models
 from free.models import Free 
 from QnA.models import Question
 from review.models import Review
+from django.utils import timezone
 
 # Create your models here.
 

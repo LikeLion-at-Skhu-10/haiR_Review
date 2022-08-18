@@ -14,6 +14,14 @@ class Question(models.Model):
     def __str__(self):
         return self.question
 
+    def q_summary(self):
+        return self.question[:20]
+    
+    @property
+    def q_update_counter(self) :
+        self.q_clicks +=1
+        self.save()
+
 class Answer(models.Model) :
     def __str__(self) :
         return self.text

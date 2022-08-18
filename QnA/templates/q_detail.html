@@ -2,6 +2,8 @@
 
 <p>작성자 : {{ qna.name }}</p>
 <p>작성일 : {{qna.q_date}}</p>
+{{qna.q_update_counter}}
+<p>조회수 : {{ qna.q_clicks }}</p>
 <h3>{{ qna.question }}</h3> 
 
 {% if qna.q_photo %}

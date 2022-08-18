@@ -19,14 +19,14 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
-
+from review import views 
 import main.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main.views.main, name = 'main'),
-    path('hashtag', main.views.hashtag, name = 'hashtag'),
 
+    path('hashtag', main.views.hashtag, name = 'hashtag'),
     path('', include('account.urls')),
     #path('', include('bookmark.urls')),
     path('', include('review.urls')),
