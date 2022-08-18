@@ -17,6 +17,11 @@ body {
     margin-left: 0.8cm;
 }
 
+.grid-container {
+    display: grid; 
+    grid-template-columns: 271.8px 271.8px;
+}
+
 .navbar {
     font-family: 'GangwonEdu_OTFBoldA';
     background-color: #F7ECDA;
@@ -49,7 +54,7 @@ body {
     margin-right: 50px;
 }
 
-#id_r_title, #id_r_body, #id_r_name, #id_r_location {
+#id_r_title, #id_r_body, #id_r_location {
     width: 543.5px;
 }
 
@@ -60,19 +65,10 @@ body {
 #id_r_photo, #id_r_receipt {
     color: #A79EB3;
     font-family: 'GangwonEdu_OTFBoldA';
-    padding-left: 200px;
-}
-
-#id_r_receipt {
-    padding-bottom: 221px;
 }
 
 .form_table, footer {
     font-family: 'Pretendard-Regular';
-}
-
-footer {
-    margin-left: 0.09cm;
 }
 
 .r_write {
@@ -81,5 +77,4 @@ footer {
     border-radius: 5px;
     border: solid #707070 1px;
     background-color: white;
-    margin-left: 0.09cm;
 }

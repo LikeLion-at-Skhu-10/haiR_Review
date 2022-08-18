@@ -5,43 +5,93 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/r_write.css' %}">
     <link rel="login logo" type="image/x-icon" href="{% static 'img/logo2.jpg' %}">
     <title>r_write</title>
 </head>
 
 <body>
-    <nav class="navbar">
-
-        <div class="navbar__logo">
-            <i class="fas fa-blog"></i>
-            <img src="{% static 'img/logo3.png' %}">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% static 'main.html' %}" img="{% static 'img/logo3.png' %}"></a>
+              </li>    
+              <li class="nav-item">
+                <a class="nav-r active" aria-current="page" href="{% static 'r_list.html' %}">미용실 익명 리뷰</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-q active" aria-current="page" href="{% static 'q_list.html' %}">헤어 Q&A</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-f active" aria-current="page" href="{% static 'f_list.html' %}">자유게시판</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" aria-label="Search">
+            </form>
+          </div>
         </div>
-
-        <ul class="navbar__menu">
-            <li><a href="#">미용실 익명 리뷰</a></li>
-            <li><a href="#">헤어 Q&A</a></li>
-            <li><a href="#">미용실 후기</a></li>
-        </ul>
-
-        <ul class="navbar__icons">
-            <li><i class="fab fa-google"></i></li>
-            <li><i class="fab fa-slack"></i></li>
-        </ul>
-
-        <a href="#" class="navbar__toggleBtn">
-            <i class="fas fa-hamburger"></i>
-        </a>
-    </nav>
+      </nav>
     {% block content %}
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        <input type="hidden" name="csrfmiddlewaretoken"
+            value="qG2jqW5dF85CkEHeIUGSVtGb70U6iPuoSnl5cSntXeguv4OqiC9GuMLQ34bAF5s9">
+        <label class="form_table"></label>
         <table>
-            <label class="form_table">{{form.as_table}}</label>
+            <tbody>
+                <tr>
+                    <th><label for="id_r_title"></label></th>
+                    <td>
+                        <input type="text" name="r_title" maxlength="200" required="" id="id_r_title" placeholder="제목을 입력해 주세요.">
+                    </td>
+                    <label for="id_r_photo"></label>
+                    <td>
+                        <input type="file" name="r_photo" accept="image/*" id="id_r_photo" placeholder="사진 첨부">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_r_body"></label></th>
+                    <td>
+                        <textarea name="r_body" cols="70" rows="10" required="" id="id_r_body" placeholder="내용을 입력해 주세요."></textarea>
+                    </td>
+                    <label for="id_r_receipt"></label>
+                    <td>
+                        <input type="file" name="r_receipt" accept="image/*" id="id_r_receipt" placeholder="영수증 사진 첨부">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_r_name"></label></th>
+                    <td>
+                        <input type="text" name="r_name" maxlength="20" id="id_r_name" placeholder="미용실 이름을 입력하세요 ex) A미용실 OO점">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_r_location"></label></th>
+                    <td>
+                        <input type="text" name="r_location" maxlength="20" id="id_r_location" sytle="display:inline" placeholder="지역을 입력하세요 ex) OO구 OO동">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="id_hashtags"></label></th>
+                    <td>
+                        <select name="hashtags" id="id_hashtags" multiple="" placeholder="#미용실 후기"></select>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-        <button type="submit">작성</button>
+        <button class="r_write" type="submit">작성</button>
     </form>
     {% endblock %}
+    <footer>
+        Copyright&copy; 성공회대학교 멋쟁이사자처럼 10기 머리뷰
+    </footer>
 </body>
 
 </html>

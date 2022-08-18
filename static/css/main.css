@@ -1,0 +1,29 @@
+.html_title {
+    font-size: 20px;
+    border: 1px solid #748dd3;
+    color: #000000;
+}
+
+.html_date {
+    color:aquamarine;
+}
+
+.write_title {
+    color:#3d71ff;
+}
+
+input[id="title"] + label {
+    border: 1px solid #748dd3;
+}
+
+input[id="body"] + label {
+    border: 1px solid #748dd3;
+}
+
+#title {
+    border: 1px solid #748dd3;
+}
+
+#body {
+    border: 1px solid #748dd3;
+}

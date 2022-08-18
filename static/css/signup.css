@@ -40,12 +40,17 @@ body {
     margin-top: 0.86cm;
 }
 
+.realusername_signup {
+    margin-left: 3.69cm;
+    margin-top: 0.86cm;
+}
+
 .password2_signup {
     margin-left: 2.3cm;
     margin-top: 0.86cm;
 }
 
-#username, #password1, #password2, #phonenumber, #email, #username2 {
+#username, #password1, #password2, #realusername, #phonenumber, #email, #username2 {
     margin-left: 4.98cm;
     margin-top: 2.29cm;
 }
