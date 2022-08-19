@@ -37,7 +37,7 @@ class r_comment(models.Model) :
     def __str__(self) :
         return self.text
 
-    r_id = models.ForeignKey(Review, on_delete=models.CASCADE)
+    r_id = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='r_comments')
     text = models.CharField(max_length=20)
     create_at = models.DateTimeField(auto_now=True)
     name = models.ForeignKey('account.Profile', on_delete=models.DO_NOTHING, null = True)

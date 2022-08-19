@@ -1,1 +1,48 @@
-<h1>마이 페이지</h1>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>머리뷰</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mypage.css' %}">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome-ie7.min.css">
+    <![endif]-->
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="nav_menu">
+            <li><a class="nav_li" id="nav_part" href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/mypage/logo2.png' %}"></a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'r_list' %}">미용실 익명 리뷰</a></li>
+            <li><a class="nav_li" id="nav_part" href="">헤어 Q&A</a></li>
+            <li><a class="nav_li" id="nav_part" href="">자유게시판</a></li>
+			<li><a class="nav_li" id="nav_part" href="">해시태그</a></li>
+        </ul>
+
+        <ul class="nav_user">
+            {% if user.is_active %}
+            <li><a class="nav_li" id="nav_part" href="">{{ user.username }}</a></li>
+            <li class="nav_li">/</li>
+            <li><a class="nav_li" id="nav_part" href="">로그아웃</a></li>
+            {% else %}
+            <li><a class="nav_li" id="nav_part" href="">로그인</a></li>
+            <li class="nav_li">/</li>
+            <li><a class="nav_li" id="nav_part" href="">회원가입</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+	<ul class="nav_mypage">
+		<li><a id="now_mypage_nav" class="mypage_navv" href="">개인정보</a></li>
+		<li><a class="mypage_navv" href="">북마크 모아보기</a></li>
+		<li><a class="mypage_navv" href="">좋아요 모아보기</a></li>
+	</ul>
+
+    <div class="mypage_layout">
+        <img class="back_mypage" src="{% static 'img/mypage/background_mypage.png' %}">
+    </div>
+</body>
+</html>

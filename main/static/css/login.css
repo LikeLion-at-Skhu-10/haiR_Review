@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-image: src="{% static 'img/img.png' %}";
+    background-color: #403964;
+}
+
+.login {
+    color: rgb(255, 255, 255);
+    margin-top: 1.03cm;
+}
+
+.search {
+    font-family: 'Pretendard-Regular';
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    margin-left: 30px;
+}
+
+.first_come {
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-size: 18.1px;
+    color: rgb(255, 255, 255);
+    margin-left: 2.74cm;
+    margin-top: 1.42cm;
+}
+
+.first_logo {
+    width: 4.14cm;
+    height: 2.15cm;
+    margin-left: 3.52cm;
+    margin-top: 0.52cm;
+}
+
+.password {
+    font-family: 'GangwonEdu_OTFBoldA';
+}
+
+#id_username, #id_password {
+    color: rgb(255, 255, 255);
+    margin-left: 0.4cm;
+}
+
+.username_login {
+    margin-left: 2.94cm;
+    margin-top: 0.6cm;
+    color: #FFBA00;
+}
+
+.password_login {
+    margin-left: 2.62cm;
+    margin-top: 0.6cm;
+}
+
+.checkbox {
+    border-radius: 20px;
+    width: 0.29cm;
+    height: 0.29cm;
+}
+
+.checktext {
+    font-family: 'GangwonEdu_OTFBoldA';
+    color: rgb(255, 255, 255);
+    margin-left: 2.6cm;
+}
+
+.hui {
+    color: #FFBA00;
+    margin-left: 50px;
+}
+
+.purple {
+    background-color: #8F87A7;
+    font-family: 'Pretendard-Regular';
+    color: rgb(255, 255, 255);
+    border: none;
+    width: 6.5cm;
+    height: 0.85cm;
+    border-radius: 10px;
+    margin-left: 2.63cm;
+    margin-top: 0.8cm;
+    margin-bottom: 1.47cm;
+}
