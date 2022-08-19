@@ -1,0 +1,8 @@
+<h1>북마크 삭제하기</h1>
+
+<form action= "" method = "post">
+    {% csrf_token %} 
+    <!-- {{form.as_p}} -->
+    <div class="alert alert-danger">Do you want to delete "{{object}}" ???? Are you Sure?</div>
+    <input type = "submit" value="Delete" class = "btn btn-info btn-sm">
+</form>

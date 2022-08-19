@@ -1,0 +1,54 @@
+<h1>Q&A게시판 디테일 페이지</h1>
+
+<p>작성자 : {{ qna.nickname }}</p>
+<p>작성일 : {{ qna.q_date }}</p>
+{{ qna.q_update_counter }}
+<p>조회수 : {{ qna.q_clicks }}</p>
+<p>추천수 : {{qna.q_likes}}</p><hr>
+
+<p>좋아요 {{ q_post.likes.count }}개</p>
+<a href="{% url 'like' pk=q_post.pk %}"></a>
+{% if user in q_post.likes.all %} 
+    취소
+    {% else %} 
+    좋아요
+    {% endif %}
+
+<h3>{{ qna.question }}</h3> 
+
+{% if qna.q_photo %}
+    <img src = "{{qna.q_photo.url}}" width = "250" height = "250">
+{% endif %}
+
+<br>
+
+{% for hashtag in qna.hashtags.all %}
+     <span>{{ hashtag.name }}</span>
+{% endfor %}
+
+<hr>
+<br>
+<a href = "{% url 'q_edit' qna.id %}">수정하기</a>
+<a href = "{% url 'q_delete' qna.id %}">삭제하기</a>
+<a href = "{% url 'q_list' %}">목록보기</a>
+<br>
+<hr>
+
+
+<h4> 답변 </h4>
+
+{% for answer in qna.answers.all %} 
+    <p> {{ answer.nickname }} : {{ answer.text }} </p>
+    
+    {% if answer.a_photo %}
+        <img src = "{{ answer.a_photo.url }}" width = "250" height = "250">
+    {% endif %}
+    <br> 
+
+{% endfor %}
+
+<form method = "POST" action="{% url 'q_detail' qna.id %}">
+    {% csrf_token %}
+    <p> {{ form.as_p }} </p>
+    <input type = "submit" value= "submit">
+</form>

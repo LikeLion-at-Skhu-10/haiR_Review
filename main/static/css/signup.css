@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-image: url("img.png");
+    background-color: #403964;
+}
+
+.signup {
+    color: rgb(255, 255, 255);
+}
+
+.big_signup {
+    margin-left: 125px;
+    margin-top: 20px;
+}
+
+.back_mypage {
+	grid-column: 2;
+    display: flex;
+	width: 42vw;
+	height: auto;
+	bottom: 0;
+	position: fixed;
+	margin-left: 50vw;
+}
+
+.password_signup {
+    font-family: 'GangwonEdu_OTFBoldA';
+    margin-top: 1.92cm;
+}
+
+.username_signup {
+    color: #FFBA00;
+}
+
+.username_signup, .email_signup, .username2_signup {
+    margin-left: 3.39cm;
+    margin-top: 0.86cm;
+}
+
+.password1_signup, .phonenumber_signup {
+    margin-left: 3.03cm;
+    margin-top: 0.86cm;
+}
+
+.password2_signup {
+    margin-left: 2.3cm;
+    margin-top: 0.86cm;
+}
+
+#username, #password1, #password2, #phonenumber, #email, #username2 {
+    margin-left: 4.98cm;
+    margin-top: 2.29cm;
+}
+
+.purple_signup {
+    background-color: #8F87A7;
+    font-family: 'Pretendard-Regular';
+    color: rgb(255, 255, 255);
+    border: none;
+    width: 6.69cm;
+    height: 0.85cm;
+    border-radius: 10px;
+    margin-left: 2.35cm;
+    margin-top: 0.96cm;
+}
