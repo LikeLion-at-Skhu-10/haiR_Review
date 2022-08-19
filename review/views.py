@@ -18,8 +18,7 @@ def r_write(request, review = None) :
             review = form.save(commit=False)
             review.r_date = timezone.now() 
             review.save()
-            form.save_m2m()
-                
+            form.save_m2m()  
             return redirect('r_list')
     else:
         form = ReviewForm(instance = review)
@@ -43,8 +42,7 @@ def r_detail(request, id):
             comment.r_id = review
             comment.text = form.cleaned_data['text']
             comment.save()
-            return redirect('r_detail', id)
-            
+            return redirect('r_detail', id)      
     else :
         form = r_commentForm()
         return render(request, 'r_detail.html', {'review':review, 'form':form})

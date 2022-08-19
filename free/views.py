@@ -102,6 +102,7 @@ def f_search(request):
         if request.method == 'POST':
                 f_searched = request.POST['f_searched']        
                 f_serobj = Free.objects.filter(p_title__contains=f_searched)
-                return render(request, 'f_search.html', {'f_searched': f_searched,'f_serobj':f_serobj})
+                f_serobx = Free.objects.filter(p_body__contains=f_searched)
+                return render(request, 'f_search.html', {'f_searched': f_searched,'f_serobj':f_serobj,'f_serobx':f_serobx})
         else:
                 return render(request, 'f_search.html', {})

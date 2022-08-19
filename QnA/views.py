@@ -83,6 +83,7 @@ def q_search(request):
         if request.method == 'POST':
                 q_searched = request.POST['q_searched']        
                 q_serobj = Question.objects.filter(question__contains=q_searched)
+            
                 return render(request, 'q_search.html', {'q_searched': q_searched,'q_serobj':q_serobj})
         else:
                 return render(request, 'q_search.html', {})

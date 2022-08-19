@@ -13,16 +13,18 @@
                     <h1> 검색하신 {{ m_searched }} 에 관한 정보입니다. </h1>
                     <br>
                     {% for Question in m_qsearch %}      
-                    QnA게시판 질문:{{ Question.question }} <br>
+                    <h3>QnA게시판 질문:<a href="{% url 'q_detail' Question.id %}">{{Question.question}}</a></h3>
                     작성일:{{ Question.q_date }}<br>
                     QnA사진:{{ Question.q_photo }}<br>
+                    해시태그:{{ Question.qna_id}}<br>
+
                     {% if Question.q_photo %}
     <img src = "{{ Question.q_photo.url }}" width = "250" height = "250" alt = "이미지 입니다."> 
   <br>
                     {% endif %}
                     {% endfor %}       
                     {% for Free in m_fsearch %}
-                    자유게시판:{{ Free.p_title }} <br>
+                    <h2>자유게시판 제목 : <a href="{% url 'f_detail' Free.id %}">{{Free.p_title}}</a></h2>
                     자유게시판 내용:{{ Free.p_body }}<br>
                     자유게시판 날짜{{ Free.p_date }}<br>
                     {% if Free.p_photo %}
@@ -32,7 +34,7 @@
                     {% endfor %}
                     <br>     
                     {% for Review in m_rsearch %}
-                    리뷰게시판 제목:{{ Review.r_title }} <br>
+                    <h3>리뷰게시판 제목 : <a href="{% url 'r_detail' Review.id %}">{{Review.r_title}}</a></h3> <!--search -> 리뷰 모델 상속-->
                     리뷰게시판 내용:{{ Review.r_body }}<br>
                     리뷰시간:{{ Review.r_date }}<br>
                     {% if Review.r_photo %}

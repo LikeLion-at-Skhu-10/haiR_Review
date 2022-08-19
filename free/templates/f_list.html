@@ -5,6 +5,7 @@
     {% csrf_token %}        
     <input type="search" placeholder="검색어를 입력해주쇼" name="f_searched" aria-label="검색창">
     <button type="submit"> 검색 </button> 
+<form>    
 {% for frees in frees.all %} 
 <h2>제목 : <a href="{% url 'f_detail' frees.id %}">{{frees.p_title}}</a></h2>
 <p>작성일자 : {{frees.p_date}}</p>

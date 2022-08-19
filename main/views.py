@@ -15,7 +15,7 @@ def hashtag(request, hashtag=None) :
         form = HashtagForm(request.POST, instance= hashtag)
         if form.is_valid() :
             hashtag = form.save(commit = False)
-            if Hashtag.objects.filter(name=form.cleaned_data['name']) :
+            if Hashtag.objects.filter (name=form.cleaned_data['name']) :
                 form = HashtagForm()
                 error_message = "이미 존재하는 해시태그 입니다"
                 return render(request, 'hashtag.html', {'form':form, "error_message":error_message})

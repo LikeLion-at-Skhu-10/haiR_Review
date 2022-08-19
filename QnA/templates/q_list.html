@@ -3,6 +3,7 @@
     {% csrf_token %}        
     <input type="search" placeholder="검색어를 입력해주쇼" name="q_searched" aria-label="검색창">
     <button type="submit"> 검색 </button>
+<form>    
 {% for qnaobj in qnaobj.all %} 
 <h3>후기_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.question}}</a></h3>
 <p>작성일자 : {{ qnaobj.q_date }}</p>

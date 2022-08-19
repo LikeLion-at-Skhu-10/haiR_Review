@@ -10,7 +10,8 @@
             {% if r_searched %}        
                     <h1> 검색하신 {{ r_searched }} 에 관한 정보입니다. </h1>
                     <br>
-                    {% for Review in r_serobj %}      
+                    {% for Review in r_serobj %}   
+                    후기_제목 : <a href="{% url 'r_detail' Reviews.id %}">{{Reviews.r_title}}</a>
                     {{ Review.r_title  }} <br>
                     {{ Review.r_body  }}
                     {% if Review.q_photo %}
