@@ -1,0 +1,244 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Light';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-SemiBold';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    background-color:#E6DFD7;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.navbar {
+    font-family: 'GangwonEdu_OTFBoldA';
+    /* 스크롤 내려도 navbar상단 고정 */
+    top: 0;
+    /* 스크롤 내려도 navbar상단 고정 */
+    padding-top: 0;
+    margin-top: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    grid-template-rows: 5vw;
+}
+
+#logo_leo {
+    width: 5vw;
+    height: auto;
+}
+
+.nav_menu {
+    grid-column: 1;
+    display: flex;
+    align-items: center;  /* 세로정렬 */
+    justify-self: left;
+}
+
+.nav_menu li {
+    margin-right: 6vw;
+} /* 단어 간격 */
+
+.nav_user {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    justify-self: right;
+    margin-right: 3vw;
+}
+
+.nav_user li {
+    margin-left: 1vw;
+} /* 단어 간격 */
+
+.nav_li {
+    color: #A7755E;
+    text-decoration: none;
+    font-size: 1.6vw;
+} /* 왜인지 부모요소에서 적용하면 안 먹어서... */
+
+#nav_part:hover {
+    color: #FFBA00;
+}/* id로 하면 되고 class로 하면 왜 안 되지...? */
+
+ul {
+    list-style:none;
+}
+
+
+
+.D_top {
+    margin-top: 5vw;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 5fr 1fr;
+}
+
+.D_top_back {
+    grid-column: 2;
+    grid-row: 1;
+    background-color: #ffffff;
+    padding: 4vw;
+    box-shadow: 0.3vw 0.3vw 0.3vw 0.3vw #C2AB99;
+}
+
+#D_top_back {
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 4fr 1fr
+}
+
+.D_title {
+    grid-row: 2;
+    font-family: 'Pretendard-Regular';
+    font-size: 3vw;
+}
+
+.D_writer {
+    grid-row: 3;
+    margin-top: 1vw;
+    font-family: 'Pretendard-Light';
+    font-size: 1.5vw;
+}
+
+.D_tag {
+    background-color: #A7755E;
+    border-radius: 1em;
+    height: 2.2vw;
+    color: #ffffff;
+    text-align: center;
+    width: 7vw;
+    font-family: 'Pretendard-SemiBold';
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center; /*content, items, self 등 제대로 알아두자*/
+}
+
+.D_hashtag {
+    grid-row: 5;
+    margin-top: 4vw;
+    font-size: 1vw;
+    display: flex;
+    gap: 1em;
+}
+
+.D_body {
+    display: flex;
+    grid-column: 2;
+    grid-row: 6;
+    margin-top: 2vw;
+    font-family: 'Pretendard-Light';
+    font-size: 1vw;
+    width: 70%;
+}
+
+.D_contents {
+    grid-row: 7;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    margin-top: 5vw;
+    gap: 2em;
+}
+
+#d_date {
+    font-family: 'Pretendard-Light';
+    font-size: 1vw;
+}
+
+#d_look {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-top: 0.3em;
+}
+
+#d_see {
+    margin-bottom: 0.3em;
+    font-family: 'Pretendard-Light';
+    font-size: 1vw;
+}
+
+.icon {
+    width: 1.5vw;
+}
+
+.like-icon {
+    color: #A7755E;
+    width: 1.2vw;
+    margin-top: 0.4em;
+}
+
+.U_D {
+    margin-top: 2vw;
+    text-align: right;
+    color: #A7755E;
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-size: 1.2vw;
+}
+
+.D_bottom{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 5fr 1fr;
+}
+
+.D_bottom_back {
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 1.2vw;
+    background-color: #FFF3EA;
+    grid-column: 2;
+    grid-row: 1;
+    padding: 4vw;
+    box-shadow: 0.3vw 0.3vw 0.3vw 0.3vw #C2AB99;
+}
+
+#comment_hr {
+    border: none;
+    border-top: 2px solid #A7755E;
+}
+
+#detail_now {
+	color: #FFBA00;
+}
+
+#comment_sort {
+	display: flex;
+	align-self: center;
+	gap: 1vw;
+}
+
+#comment_submit {
+	display: flex;
+	align-self: center;
+}

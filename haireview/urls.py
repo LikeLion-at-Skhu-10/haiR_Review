@@ -16,6 +16,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import include
+
+import main.views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', main.views.main, name = 'main'),
+    path('hashtag', main.views.hashtag, name = 'hashtag'),
+    path('m_search/',main.views.m_search, name="m_search"),
+    path('h_list', main.views.h_list, name='h_list'),
+
+    path('', include('account.urls')),
+    path('', include('free.urls')),
+    path('', include('QnA.urls')),
+    path('', include('review.urls')),
+    path('', include('bookmark.urls')),
+]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+

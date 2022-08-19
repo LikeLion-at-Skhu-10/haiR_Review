@@ -1,1 +1,25 @@
 <h1>회원가입 페이지</h1>
+
+<form method = "POST" action= "{% url 'signup' %}">
+    {% csrf_token %}
+    ID : <br>
+    <input name = "username" type ="text">
+    <br>
+    닉네임 : <br>
+    <input name = "nickname" type ="nickname">
+    <br>
+    비밀번호 : <br>
+    <input name = "password1" type ="password">
+    <br>
+    비밀번호 확인 : <br>
+    <input name = "password2" type ="password">
+    <br>
+    이메일 : <br>
+    <input name = "email" type ="email">
+    <br>
+    휴대폰 번호 : <br>
+    <input name = "p_num" type ="p_num">
+    <br>
+    <br>
+    <button type = "submit"> 회원가입하기 </button>
+</form>
