@@ -35,7 +35,7 @@
 <a href="{% url 'f_list' %}">목록보기</a>
 <br>
 
-{% for comment in free.comments.all %} 
+{% for comment in free.p_comments.all %} 
     <p>{{ comment.name }} : {{ comment.text }} </p>
 {% endfor %} 
 <br><hr>

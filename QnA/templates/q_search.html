@@ -5,7 +5,7 @@
     <br>
 
     {% for Question in q_serobj %}      
-        {{ Question.question }} <br>
+        <a href="{% url 'q_detail' Question.id %}">{{Question.question}}</a>
         {{ Question.q_date }}
         {{ Question.q_photo }}
 

@@ -13,14 +13,6 @@
     좋아요
     {% endif %}
 </a>
-<p>스크랩수 : {{review.r_clips}}</p>
-<a href="{% url 'r_clips' review.id %}">
-    {% if user in review.r_clip.all %} 
-    취소
-    {% else %} 
-    스크랩
-    {% endif %}
-</a>
 
 <p>글 내용 : {{review.r_body}}</p>
 
@@ -46,8 +38,8 @@
 <a href="{% url 'r_delete' review.id %}">삭제하기</a>
 <br>
 <br><hr>
-{% for comment in review.comments.all %} 
-    <p> {{ comment.name }} : {{ comment.text }} </p>
+{% for r_comment in review.r_comments.all %} 
+    <p> {{ r_comment.name }} : {{ r_comment.text }} </p>
 {% endfor %} 
 <br><hr>
 

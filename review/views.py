@@ -41,14 +41,14 @@ def r_list(request):
 #리뷰 글 상세페이지
 def r_detail(request, id):
     review = get_object_or_404(Review, id=id)
-
     if request.method == "POST" :
         form = r_commentForm(request.POST)
         if form.is_valid() :
-            comment = form.save(commit = False)
-            comment.r_id = review
-            comment.text = form.cleaned_data['text']
-            comment.save()
+            r_comment = form.save(commit = False)
+            r_comment.r_id = review
+            r_comment.text = form.cleaned_data['text']
+            r_comment.save()
+            form.save_m2m()
             return redirect('r_detail', id)
             
     else :

@@ -1,11 +1,12 @@
 <h1>리뷰 게시판 검색 페이지</h1>
 
 {% if r_searched %}        
-    <h1> 검색하신 {{ r_searched }} 에 관한 정보입니다. </h1>
+    <h3> 검색하신 {{ r_searched }} 에 관한 정보입니다. </h3>
     <br>
 
-    {% for Review in r_serobj %}      
-        {{ Review.r_title  }} <br>
+    {% for Review in r_serobj %}   
+        후기_제목 : <a href="{% url 'r_detail' Review.id %}">{{Review.r_title}}</a>
+        <br>
         {{ Review.r_body  }}
 
         {% if Review.q_photo %}

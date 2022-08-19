@@ -50,3 +50,7 @@ def login(request):
 def logout(request) :
     auth.logout(request)
     return redirect('main')
+
+#마이페이지
+def mypage(request) :
+        return render(request, 'mypage.html')

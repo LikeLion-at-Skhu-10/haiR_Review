@@ -4,7 +4,7 @@
     <h1> 검색하신 {{ f_searched }} 에 관한 정보입니다. </h1>
     <br>
     {% for Free in f_serobj %}      
-        {{ Free.p_title }}
+        <h2>제목 : <a href="{% url 'f_detail' Free.id %}">{{Free.p_title}}</a></h2>
         {{ Free.p_body }}
         {{ Free.p_date }}
         {{ Free.p_photo }}
