@@ -1,38 +1,76 @@
-<h1>메인페이지</h1>
+{% load static %}
 
-{% if user.is_active %} 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="login logo" type="image/x-icon" href="{% static 'img/logo2.jpg' %}">
+    <title>메인 페이지</title>
+</head>
+
+<body>
+    <h1>메인페이지</h1>
+
+    {% if user.is_active %}
     <div>{{ user.username }} 님 환영합니다 </div>
     <a href="{% url 'logout' %}">로그아웃</a>
-{% else %}
+    <a href="{% url 'mypage' user.username %}">마이페이지</a>
+    {% else %}
     <a href="{% url 'login' %}">로그인</a>
     <a href="{% url 'signup' %}">회원가입 </a>
-{% endif %}
+    {% endif %}
 
-<hr>
 
-<h3>해시태그</h3>
-<a href="{% url 'hashtag' %}">해시태그 추가하기</a>
+    <hr>
 
-<hr>
 
-<h3>북마크</h3>
-<a href="{% url 'bookmark_create' %}">북마크 추가하기</a>
-<a href="{% url 'bookmark_list' %}">북마크 목록</a>
 
-<hr>
 
-<h3>리뷰게시판</h3> 
-<a href="{% url 'r_write' %}">리뷰 게시판 작성하기</a> <br>
-<a href="{% url 'r_list' %}">리뷰 게시판 목록</a> <br>
+    <hr>
 
-<hr>
+    <hr>
 
-<h3>QnA게시판</h3> 
-<a href="{% url 'q_write' %}">QnA 게시판 작성하기</a> <br>
-<a href="{% url 'q_list' %}">QnA 게시판 목록</a> <br>
+    <h3>리뷰게시판</h3>
+    <a href="{% url 'r_write' %}">리뷰 게시판 작성하기</a> <br>
+    <a href="{% url 'r_list' %}">리뷰 게시판 목록</a> <br>
 
-<hr>
+    <div class="summary">
+    <p>리뷰 게시글 요약</p>
+    {% for reviews in reviews.all %}
+    <h7>후기제목: <a href="{% url 'r_detail' reviews.id %}">{{reviews.r_summary}}...more</a></h7>
+    <a>작성일자 : {{reviews.r_date}}</a><br>
+    {% endfor %}
+    </div>
 
-<h3>자유게시판</h3> 
-<a href="{% url 'f_write' %}">자유 게시판 작성하기</a> <br>
-<a href="{% url 'f_list' %}">자유 게시판 목록</a> <br>
+    <hr>
+
+    <h3>QnA게시판</h3>
+    <a href="{% url 'q_write' %}">QnA 게시판 작성하기</a> <br>
+    <a href="{% url 'q_list' %}">QnA 게시판 목록</a> <br>
+
+    <div class="summary">
+        <p>QnA 게시글 요약</p>
+        {% for qnaobj in qnaobj.all %}
+        <h7>QnA_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.q_summary}}...more</a></h7>
+        <a>작성일자 : {{ qnaobj.q_date }}</a><br>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <h3>자유게시판</h3>
+    <a href="{% url 'f_write' %}">자유 게시판 작성하기</a> <br>
+    <a href="{% url 'f_list' %}">자유 게시판 목록</a> <br>
+
+    <div class="summary">
+    <p>자유 게시글 요약</p>
+    {% for frees in frees.all %}
+    <h7>제목 : <a href="{% url 'f_detail' frees.id %}">{{frees.p_summary}}...more</a></h7>
+    <a>작성일자 : {{frees.p_date}}</a><br>
+    {% endfor %}
+    </div>
+</body>
+
+</html>

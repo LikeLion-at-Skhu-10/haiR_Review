@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 .html_title {
     font-size: 20px;
     border: 1px solid #748dd3;
@@ -26,4 +40,26 @@ input[id="body"] + label {
 
 #body {
     border: 1px solid #748dd3;
+}
+
+body {
+    font-family: 'GangwonEdu_OTFBoldA';
+}
+
+p {
+    font-size: 20px;
+}
+
+.summary {
+    border: 1px solid #403964;
+    border-radius: 2em;
+    box-shadow: 5px 5px 5px #8F87A7;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    /* background-color: #8F87A7; */
+}
+
+p {
+    border-bottom: 1px solid #403964;
 }

@@ -1,13 +1,21 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from main.forms import HashtagForm
 from .models import Hashtag
-
+from free.models import Free 
+from QnA.models import Question
+from review.models import Review
+from django.core.paginator import Paginator
 # Create your views here.
+
 
 #메인페이지
 def main(request):
-    return render(request, 'main.html')
-
+    reviews = Review.objects.all().order_by('-r_clicks')[:3]
+    qnaobj = Question.objects.all().order_by('-q_clicks')[:3]
+    frees = Free.objects.all().order_by('-p_clicks')[:3]
+    context = {'reviews':reviews, 'qnaobj':qnaobj, 'frees':frees}
+    return render(request, 'main.html', context)
+    
 #해시태그 추가하기
 def hashtag(request, hashtag=None) :
     if request.method == 'POST' :
