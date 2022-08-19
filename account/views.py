@@ -1,4 +1,3 @@
-from django.http import request 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -9,6 +8,7 @@ from account.models import Profile
 #마이페이지
 def mypage(request) :
 	return render (request, 'mypage.html ') 
+
 
 #회원가입
 def signup(request):

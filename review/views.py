@@ -9,7 +9,6 @@ from django.utils import timezone
 from review.models import Review, r_comment
 from main.models import Hashtag
 from django.http import request
-from django.core.paginator import Paginator # 페이징
 
 # Create your views here.
 
@@ -38,21 +37,6 @@ def r_list(request):
     else:
         reviews = Review.objects.all().order_by('-r_date')
     return render(request, 'r_list.html', {'reviews':reviews, 'sort':r_sort})
-
-
-def r_page(request):
-    # 입력 파라미터
-    page = request.GET.get('page', '1')  # 페이지
-
-    # 조회
-    r_blogs = Review.objects.order_by('-r_date')
-
-    # 페이징처리
-    paginator = Paginator(r_blogs, 5)  # 페이지당 10개씩 보여주기
-    page_obj = paginator.get_page(page)
-
-    context = {'r_blogs': page_obj}
-    return render(request, 'community/community.html', context)
 
 #리뷰 글 상세페이지
 def r_detail(request, id):

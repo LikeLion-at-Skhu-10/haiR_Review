@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,26 +17,27 @@
         <ul class="nav_menu">
             <li><a class="nav_li" id="nav_part" href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/list/logo4.png' %}"></a></li>
             <li><a class="nav_li" id="nav_part" href="{% url 'r_list' %}"><p id="list_now">미용실 익명 리뷰</p></a></li>
-            <li><a class="nav_li" id="nav_part" href="">헤어 Q&A</a></li>
-            <li><a class="nav_li" id="nav_part" href="">자유게시판</a></li>
-			<li><a class="nav_li" id="nav_part" href="">해시태그</a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'q_list' %}">헤어 Q&A</a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'f_list' %}">자유게시판</a></li>
+			<li><a class="nav_li" id="nav_part" href="{% url 'h_list' %}">해시태그</a></li>
         </ul>
 
         <ul class="nav_user">
             {% if user.is_active %}
-            <li><a class="nav_li" id="nav_part" href="">{{ user.username }}</a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
             <li class="nav_li">/</li>
-            <li><a class="nav_li" id="nav_part" href="">로그아웃</a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'logout' %}">로그아웃</a></li>
             {% else %}
-            <li><a class="nav_li" id="nav_part" href="">로그인</a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'login' %}">로그인</a></li>
             <li class="nav_li">/</li>
-            <li><a class="nav_li" id="nav_part" href="">회원가입</a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'signup' %}">회원가입</a></li>
             {% endif %}
         </ul>
     </nav>
 
     <div class="list_layout">
         <div class="list_back">
+
 			<div class="list_form">
 
 				<!-- 정렬 -->
@@ -58,8 +58,9 @@
 					<button class="list_search_button" type="submit"> 검색 </button>
 				</form>
 
-				<a class="list_write" type="submit" href="{% url 'q_write' %}">글쓰기</a>
+				<a class="list_write" type="submit" href="{% url 'r_write' %}">글쓰기</a>
 			</div>
+
             <div class="list_table">
                 <table>
                     <!--table에는 grid적용이 안되나봐-->

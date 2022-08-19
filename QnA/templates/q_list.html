@@ -1,32 +1,84 @@
-<h1>Q&A게시판 목록 페이지</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>머리뷰</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome-ie7.min.css">
+    <![endif]-->
+</head>
+    
+<body>
+    <nav class="navbar">
+        <ul class="nav_menu">
+            <li><a class="nav_li" id="nav_part" href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/list/logo4.png' %}"></a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'r_list' %}"><p id="list_now">미용실 익명 리뷰</p></a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'q_list' %}">헤어 Q&A</a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'f_list' %}">자유게시판</a></li>
+			<li><a class="nav_li" id="nav_part" href="{% url 'h_list' %}">해시태그</a></li>
+        </ul>
 
-<!-- 검색 -->
-<form  method="POST" action="{% url 'q_search' %}">
-    {% csrf_token %}        
-    <input type="search" placeholder="검색어를 입력해주세요" name="q_searched" aria-label="검색창">
-    <button type="submit"> 검색 </button>
-</form>
+        <ul class="nav_user">
+            {% if user.is_active %}
+            <li><a class="nav_li" id="nav_part" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
+            <li class="nav_li">/</li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'logout' %}">로그아웃</a></li>
+            {% else %}
+            <li><a class="nav_li" id="nav_part" href="{% url 'login' %}">로그인</a></li>
+            <li class="nav_li">/</li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'signup' %}">회원가입</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 
-<!-- 정렬 -->
-<form method="GET" action="{% url 'q_list' %}">
-    <div class="col-4">
-    <select name="q_sort" id="q_sort">
-        <option value="q_date" id="q_date">최신순</option>
-        <option value="q_clicks" id="q_clicks">조회수순</option>
-    </select>
-    <button class="btn btn-primary" type="submit" value="">정렬</button>
+    <div class="list_layout">
+        <div class="list_back">
+            <div class="list_form">
+                <form method="GET" action="{% url 'q_list' %}">
+                    <div>
+                        <select name="q_sort" id="q_sort">
+                            <option value="q_date" id="q_date">최신순</option>
+                            <option value="q_clicks" id="q_clicks">조회수순</option>
+                        </select>
+                        <button type="submit" value="">정렬</button>
+                    </div>
+                    <a type="submit" href="{% url 'q_write' %}"></a>
+                </form>
+            </div>
+            <div class="list_table">
+                <table>
+                    <!--table에는 grid적용이 안되나봐-->
+                    <thead id="list_thead">
+                        <tr>
+                            <th id="list_th">제목</th>
+                            <th id="list_th">작성자</th>
+                            <th id="list_th">작성일</th>
+                            <th id="list_th">조회수</th>
+                            <th id="list_th">추천수</th>
+                        </tr>
+                    </thead>
+                    {% for qnaobj in qnaobj.all %} 
+                    <tbody>
+                        <tr>
+                            <td id="list_td">
+                                <a style="text-decoration: none; color: rgb(111, 111, 111);"
+                                    href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.question}}
+                                </a>
+                            </td>
+                            <td id="list_td">{{ qnaobj.nickname }}</td>
+                            <td id="list_td">{{ qnaobj.q_date|date:'Y.m.d' }}</td>
+                            {{ qna.q_update_counter}}
+                            <td id="list_td">{{ qnaobj.q_clicks }}</td>
+                            <td id="list_td">{{ qnaobj.q_likes }}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </div>
-</form>
-
-<a href="{% url 'main' %}">홈</a>
-<hr>
-
-{% for qnaobj in qnaobj.all %} 
-<h3>후기_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.question}}</a></h3>
-<p>작성일자 : {{ qnaobj.q_date }}</p>
-<p>작성자 : {{ qnaobj.nickname }}</p> 
-{{ qna.q_update_counter }}
-<p>조회수 : {{ qnaobj.q_clicks }}</p>
-<p>추천수 : {{ qnaobj.q_likes }}</p><hr>
-{% endfor %}
-
+</body>
+</html>
