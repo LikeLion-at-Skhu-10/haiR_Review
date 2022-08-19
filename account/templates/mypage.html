@@ -1,1 +1,13 @@
 <h1>마이 페이지</h1>
+
+<h3>{{ profile.username }} 님의 프로필 </h3>
+<br>
+
+{{ profile.nickname }}<br>
+{{ profile.email }} <br>
+{{ profile.p_num }}
+
+{% if profile.profile_Img %} 
+    <img src="{{ profile.profile_Img.url }}" width = "250" height = "250" alt = "profile_Img"> 
+{% endif %}    
+
