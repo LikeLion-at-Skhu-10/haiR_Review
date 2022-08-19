@@ -175,6 +175,26 @@ ul {
 }
 
 .main_bottom {
-    position: fixed;
     bottom: 0;
+	z-index: 0;
 } /* 중간에 내용이 없으니 footer인데 위로 올라와서 */
+
+p {
+    font-size: 20px;
+	border-bottom: 1px solid #403964;
+	font-family: 'GangwonEdu_OTFBoldA';
+}
+
+.summary {
+    border: 1px solid #403964;
+    border-radius: 2em;
+    box-shadow: 5px 5px 5px #8F87A7;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+	margin-bottom: 7%;
+	background-color: white;
+	margin-right: 10vw;
+	margin-left: 10vw;
+    /* background-color: #8F87A7; */
+}

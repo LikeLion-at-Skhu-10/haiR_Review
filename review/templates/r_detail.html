@@ -114,10 +114,14 @@
     <div class="D_bottom">
         <div class="D_bottom_back">
     
-            <form method="POST" action="{% url 'r_detail' review.id %}">
+            <form id="comment_sort" method="POST" action="{% url 'r_detail' review.id %}">
                 {% csrf_token %}
-                <p> {{ form.as_p }}</p>
-                <input type="submit" value="submit">
+                <div>
+					{{ form.as_p }}
+				</div>
+				<div id="comment_submit">
+					<input type="submit" value="submit">
+				</div>
             </form>
 			{% for r_comment in review.r_comments.all %} 
             <p> {{ r_comment.name }} : {{ r_comment.text }} </p>

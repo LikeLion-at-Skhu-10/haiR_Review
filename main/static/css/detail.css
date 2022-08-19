@@ -214,6 +214,8 @@ ul {
 }
 
 .D_bottom_back {
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-size: 1.2vw;
     background-color: #FFF3EA;
     grid-column: 2;
     grid-row: 1;
@@ -228,4 +230,15 @@ ul {
 
 #detail_now {
 	color: #FFBA00;
+}
+
+#comment_sort {
+	display: flex;
+	align-self: center;
+	gap: 1vw;
+}
+
+#comment_submit {
+	display: flex;
+	align-self: center;
 }

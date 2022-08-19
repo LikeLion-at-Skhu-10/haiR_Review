@@ -109,8 +109,8 @@ ul {
     grid-row: 1;
     padding-bottom: 3vw;
     display: flex;
-    justify-self: right;
-    margin-right: 2vw;
+    justify-content: right;
+	gap: 2vw;
 }
 
 .list_table {
@@ -162,4 +162,59 @@ table {
 
 #list_now {
 	color: #A7755E;
+}
+
+.list_search {
+	background-color: #C2AB99;
+	border: 0;
+	color: white;
+	height: 2vw;
+	border-radius: 0.5em;
+}
+
+.list_sort {
+	background-color: white;
+	border: 0;
+	color: rgb(111, 111, 111);
+	width: 9vw;
+	height: 2vw;
+	border-radius: 0.5em;
+}
+
+.list_search_button {
+	background-color: #C2AB99;
+	border: 0;
+	font-family: 'GangwonEdu_OTFBoldA';
+	color: white;
+	padding-left: 0.7vw;
+	padding-right: 0.7vw;
+	padding-top: 0.4vw;
+	padding-bottom: 0.2vw;
+	border-radius: 0.5em;
+	height: 2vw;
+}
+
+.list_sort_button {
+	background-color: white;
+	border: 0;
+	font-family: 'GangwonEdu_OTFBoldA';
+	color: rgb(111, 111, 111);
+	padding-left: 0.7vw;
+	padding-right: 0.7vw;
+	padding-top: 0.4vw;
+	padding-bottom: 0.2vw;
+	border-radius: 0.5em;
+	height: 2vw;
+}
+
+.list_write {
+	background-color: #A7755E;
+	border-radius: 0.5em;
+	font-family: 'GangwonEdu_OTFBoldA';
+	color: white;
+	text-decoration: none;
+	padding-left: 0.7vw;
+	padding-right: 0.7vw;
+	padding-top: 0.4vw;
+	padding-bottom: 0.2vw;
 }

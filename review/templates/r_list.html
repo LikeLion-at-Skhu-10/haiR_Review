@@ -36,38 +36,30 @@
         </ul>
     </nav>
 
-<!-- 검색 -->
-<form  method="POST" action="{% url 'r_search' %}">
-    {% csrf_token %}        
-    <input type="search" placeholder="검색어를 입력해주세요" name="r_searched" aria-label="검색창">
-    <button type="submit"> 검색 </button>
-</form>
-
-<!-- 정렬 -->
-<form method="GET" action="{% url 'r_list' %}">
-    <div class="col-4">
-    <select name="sort" id="sort">
-        <option value="r_date" id="r_date">최신순</option>
-        <option value="r_clicks" id="r_clicks">조회수순</option>
-    </select>
-    <button class="btn btn-primary" type="submit" value="">정렬</button>
-    </div>
-</form>
-
     <div class="list_layout">
         <div class="list_back">
-            <div class="list_form">
-                <form method="GET" action="{% url 'r_list' %}">
-                    <div>
-                        <select name="r_sort" id="r_sort">
-                            <option value="r_date" id="r_date">최신순</option>
-                            <option value="r_clicks" id="r_clicks">조회수순</option>
-                        </select>
-                        <button type="submit" value="">정렬</button>
-                    </div>
-                    <a type="submit" href="{% url 'q_write' %}"></a>
-                </form>
-            </div>
+			<div class="list_form">
+
+				<!-- 정렬 -->
+				<form method="GET" action="{% url 'r_list' %}">
+					<div class="col-4">
+						<select name="sort" id="sort" class="list_sort">
+							<option value="r_date" id="r_date">최신순</option>
+							<option value="r_clicks" id="r_clicks">조회수순</option>
+						</select>
+						<button class="list_sort_button" type="submit" value="">정렬</button>
+					</div>
+				</form>
+
+				<!-- 검색 -->
+				<form method="POST" action="{% url 'r_search' %}">
+					{% csrf_token %}
+					<input class="list_search" type="search" name="r_searched" aria-label="검색창">
+					<button class="list_search_button" type="submit"> 검색 </button>
+				</form>
+
+				<a class="list_write" type="submit" href="{% url 'q_write' %}">글쓰기</a>
+			</div>
             <div class="list_table">
                 <table>
                     <!--table에는 grid적용이 안되나봐-->
