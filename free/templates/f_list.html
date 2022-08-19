@@ -1,5 +1,12 @@
 <h1>자유게시판 목록 페이지</h1>
 
+<!-- 검색 -->
+<form  method="POST" action="{% url 'f_search' %}">
+    {% csrf_token %}        
+    <input type="search" placeholder="검색어를 입력해세요" name="f_searched" aria-label="검색창">
+    <button type="submit"> 검색 </button> 
+</form>
+
 <!-- 정렬 -->
 <form method="GET" action="{% url 'f_list' %}">
     <div class="col-4">

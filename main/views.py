@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from main.forms import HashtagForm
 from .models import Hashtag
 from free.models import Free 
@@ -29,7 +29,25 @@ def hashtag(request, hashtag=None) :
             else :
                 hashtag.name = form.cleaned_data['name']
                 hashtag.save()
-            return redirect('hashtag')
+            return redirect('h_list')
     else :
         form = HashtagForm(instance = hashtag)
         return render(request, 'hashtag.html', {'form':form})
+
+
+#해시태그 목록
+def h_list(request) :
+    hashtags = Hashtag.objects.all()
+    return render(request, 'h_list.html', {'hashtags':hashtags})
+
+
+#전체 검색기능
+def m_search(request):
+        if request.method == 'POST':
+                m_searched = request.POST['m_searched']        
+                m_qsearch = Question.objects.filter(question__contains=m_searched)
+                m_fsearch = Free.objects.filter(p_title__contains=m_searched)
+                m_rsearch = Review.objects.filter(r_title__contains=m_searched)
+                return render(request, 'search.html', {'m_searched': m_searched, 'm_qsearch': m_qsearch , 'm_fsearch':m_fsearch , 'm_rsearch':m_rsearch})
+        else:
+                return render(request, 'search.html', {})

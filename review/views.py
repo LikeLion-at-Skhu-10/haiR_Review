@@ -89,14 +89,27 @@ def r_likes(request, r_id):
     return redirect('/r_detail/' + str(r_id))
 
 #추천수 
-def r_clip(request, r_id):
-    like_b = get_object_or_404(Review, id=r_id)
-    if request.name in like_b.r_clip.all():
-        like_b.r_clip.remove(request.name)
-        like_b.r_clips -= 1
-        like_b.save()
-    else:
-        like_b.r_clip.add(request.name)
-        like_b.r_clips += 1
-        like_b.save()
-    return redirect('/r_detail/' + str(r_id))
+# def r_clip(request, r_id):
+#     like_b = get_object_or_404(Review, id=r_id)
+#     if request.name in like_b.r_clip.all():
+#         like_b.r_clip.remove(request.name)
+#         like_b.r_clicks -= 1
+#         like_b.save()
+#     else:
+#         like_b.r_clip.add(request.name)
+#         like_b.r_clicks += 1
+#         like_b.save()
+#     return redirect('/r_detail/' + str(r_id))
+
+#검색
+def r_search(request):
+        if request.method == 'POST':
+                r_searched = request.POST['r_searched']        
+                r_serobj = Review.objects.filter(r_title__contains=r_searched)
+                return render(request, 'r_search.html', {'r_searched': r_searched,'r_serobj':r_serobj})
+        elif request.method == 'POST' :
+                r_searched = request.POST['r_searched']        
+                r_serobj = Review.objects.filter(r_body__contains=r_searched)
+                return render(request, 'r_search.html', {'r_searched': r_searched,'r_serobj':r_serobj})
+        else:       
+                return render(request, 'r_search.html', {})

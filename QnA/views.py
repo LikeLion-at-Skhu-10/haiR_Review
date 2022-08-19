@@ -80,24 +80,23 @@ def q_likes(request, id):
     return redirect('/q_detail/' + str(id))
 
 #추천수 
-def q_clip(request, id):
-    like_b = get_object_or_404(Question, id=id)
-    if request.q_user in like_b.q_clip.all(): #q_user
-        like_b.q_clip.remove(request.q_user)
-        like_b.q_clips -= 1
-        like_b.save()
-    else:
-        like_b.q_clip.add(request.q_user)
-        like_b.q_clips += 1
-        like_b.save()
-    return redirect('/q_detail/' + str(id))
+# def q_clip(request, id):
+#     like_b = get_object_or_404(Question, id=id)
+#     if request.q_user in like_b.q_clip.all(): #q_user
+#         like_b.q_clip.remove(request.q_user)
+#         like_b.q_clips -= 1
+#         like_b.save()
+#     else:
+#         like_b.q_clip.add(request.q_user)
+#         like_b.q_clips += 1
+#         like_b.save()
+#     return redirect('/q_detail/' + str(id))
 
-    #검색하기
+#검색하기
 def q_search(request):
         if request.method == 'POST':
-                searched = request.POST['searched']        
-                qnaobj = Question.objects.filter(question__contains=searched)
-                hash = Question.objects.filter(hashtags__contains=searched)
-                return render(request, 'q_search.html', {'searched': searched, 'qnaobj': qnaobj , 'hash':hash})
+                q_searched = request.POST['q_searched']        
+                q_serobj = Question.objects.filter(question__contains=q_searched)
+                return render(request, 'q_search.html', {'q_searched': q_searched,'q_serobj':q_serobj})
         else:
                 return render(request, 'q_search.html', {})

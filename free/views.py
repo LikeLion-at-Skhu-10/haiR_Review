@@ -94,3 +94,11 @@ def p_likes(request, p_id) :
 #         like_b.p_clicks += 1
 #         like_b.save()
 #     return redirect('/f_detail/' + str(p_id))
+
+def f_search(request):
+        if request.method == 'POST':
+                f_searched = request.POST['f_searched']        
+                f_serobj = Free.objects.filter(p_title__contains=f_searched)
+                return render(request, 'f_search.html', {'f_searched': f_searched,'f_serobj':f_serobj})
+        else:
+                return render(request, 'f_search.html', {})

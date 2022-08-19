@@ -9,6 +9,6 @@ urlpatterns = [
     path('q_edit/<str:id>/', views.q_edit, name='q_edit'),
     path('q_delete/<str:id>/', views.q_delete, name='q_delete'),
     path('q_like/<int:q_id>/', views.q_likes, name="q_likes"),
-    path('q_clip/<int:q_id>/', views.q_clip, name="q_clips"),
-    #path('q_search/',views.q_search, name = 'q_search'),
+    #path('q_clip/<int:q_id>/', views.q_clip, name="q_clips"),
+    path('q_search/',views.q_search, name = 'q_search'),
 ]

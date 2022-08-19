@@ -10,6 +10,15 @@
 
 <hr>
 
+<h3>검색하기</h3>
+<form  method="POST" action="{% url 'm_search' %}">
+    {% csrf_token %}        
+    <input type="m_search" placeholder="Search" name="m_searched" aria-label="mainSearch">
+    <button type="submit"> 검색 </button>
+</form>
+
+<hr>
+
 <h3>해시태그</h3>
 <a href="{% url 'hashtag' %}">해시태그 추가하기</a>
 
