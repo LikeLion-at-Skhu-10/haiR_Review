@@ -5,7 +5,7 @@
     <div class="col-4">
     <select name="q_sort" id="q_sort">
         <option value="q_date" id="q_date">최신순</option>
-        <option value="q_clips" id="q_clips">조회수순</option>
+        <option value="q_clicks" id="q_clicks">조회수순</option>
     </select>
     <button class="btn btn-primary" type="submit" value="">정렬</button>
     </div>
@@ -18,7 +18,8 @@
 <h3>후기_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.question}}</a></h3>
 <p>작성일자 : {{ qnaobj.q_date }}</p>
 <p>작성자 : {{ qnaobj.nickname }}</p> 
-<p>조회수 : {{ qnaobj.q_clips }}</p>
+{{ qna.q_update_counter }}
+<p>조회수 : {{ qnaobj.q_clicks }}</p>
 <p>추천수 : {{ qnaobj.q_likes }}</p><hr>
 {% endfor %}
 

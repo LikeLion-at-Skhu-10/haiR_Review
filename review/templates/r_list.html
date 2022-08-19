@@ -3,7 +3,7 @@
 <!-- 정렬 -->
 <form method="GET" action="{% url 'r_list' %}">
     <div class="col-4">
-    <select name="r_sort" id="r_sort">
+    <select name="sort" id="sort">
         <option value="r_date" id="r_date">최신순</option>
         <option value="r_clicks" id="r_clicks">조회수순</option>
     </select>
@@ -15,7 +15,8 @@
 <h3>후기_제목 : <a href="{% url 'r_detail' reviews.id %}">{{reviews.r_title}}</a></h3>
 <p>작성일자 : {{reviews.r_date}}</p>
 <p>작성자 : {{ reviews.name }}</p> 
-<p>조회수 : {{reviews.r_clips}}</p>
+{{review.r_update_counter}}
+<p>조회수 : {{reviews.r_clicks}}</p>
 <p>추천수 : {{reviews.r_likes}}</p><hr>
 {% endfor %}
 

@@ -36,8 +36,6 @@ def r_list(request):
         reviews = Review.objects.all().order_by('-r_clicks','-r_date')
     else:
         reviews = Review.objects.all().order_by('-r_date')
-    #default_r_clikes = blogs.r_clikes
-    # blogs.r_clikes = default_r_clikes +1
     return render(request, 'r_list.html', {'reviews':reviews, 'sort':r_sort})
 
 #리뷰 글 상세페이지

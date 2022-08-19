@@ -18,7 +18,7 @@ class Review(models.Model):
     r_receipt = models.ImageField(upload_to='images/', blank = True)
     r_nickname = models.CharField(max_length=20, null = True, blank = True)
     r_clip = models.ManyToManyField('account.Profile', related_name='r_clip', blank=True)
-    r_clips = models.PositiveIntegerField(default=0, verbose_name='조회수')
+    r_clicks = models.PositiveIntegerField(default=0, verbose_name='조회수')
     r_date = models.DateTimeField('data published')
     r_user = models.ForeignKey('account.Profile', related_name='r_user', on_delete=models.CASCADE, null=True, default='')
     r_like = models.ManyToManyField('account.Profile', related_name='r_likes', blank=True)
@@ -26,6 +26,9 @@ class Review(models.Model):
 
     def __str__(self):
         return self.r_title
+
+    def r_summary(self) : 
+        return self.r_title[:20]
 
     @property
     def r_update_counter(self) :

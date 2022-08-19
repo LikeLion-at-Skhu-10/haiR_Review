@@ -25,14 +25,33 @@
 <a href="{% url 'r_write' %}">리뷰 게시판 작성하기</a> <br>
 <a href="{% url 'r_list' %}">리뷰 게시판 목록</a> <br>
 
+<h4>리뷰 게시글 요약</h4> 
+{% for reviews in reviews.all %} 
+    <h7>후기제목: <a href="{% url 'r_detail' reviews.id %}">{{reviews.r_summary}}...more</a></h7>
+    <a>작성일자 : {{reviews.r_date}}</a><br>
+{% endfor %}
+
+
 <hr>
 
 <h3>QnA게시판</h3> 
 <a href="{% url 'q_write' %}">QnA 게시판 작성하기</a> <br>
 <a href="{% url 'q_list' %}">QnA 게시판 목록</a> <br>
 
+<h4>QnA 게시글 요약</h4> 
+{% for qnaobj in qnaobj.all %} 
+    <h7>QnA_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.q_summary}}...more</a></h7>
+    <a>작성일자 : {{ qnaobj.q_date }}</a><br>
+{% endfor %}
+
 <hr>
 
 <h3>자유게시판</h3> 
 <a href="{% url 'f_write' %}">자유 게시판 작성하기</a> <br>
 <a href="{% url 'f_list' %}">자유 게시판 목록</a> <br>
+
+<h4>자유 게시글 요약</h4>
+{% for frees in frees.all %} 
+    <h7>제목 : <a href="{% url 'f_detail' frees.id %}">{{frees.p_summary}}...more</a></h7>
+    <a>작성일자 :  {{frees.p_date}}</a><br>
+{% endfor %}

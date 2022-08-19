@@ -3,7 +3,8 @@
 <h4>제목 : {{free.p_title}}</h4>
 <p>작성자 : {{ free.nickname }} </p>
 <p>작성일자 : {{free.p_date}}</p>
-<p>조회수 : {{free.p_clikes}}</p>
+{{ free.p_update_counter}}
+<p>조회수 : {{free.p_clicks}}</p>
 <p>추천수 : {{free.p_likes}}</p>
 <a href="{% url 'p_likes' free.id %}">
     {% if user in free.p_like.all %} 
@@ -13,14 +14,6 @@
     {% endif %}
 </a>
 
-<p>스크랩수 : {{free.p_clips}}</p>
-<a href="{% url 'p_clips' free.id %}">
-    {% if user in free.p_clip.all %} 
-    취소
-    {% else %} 
-    스크랩
-    {% endif %}
-</a>
 
 <hr>
 

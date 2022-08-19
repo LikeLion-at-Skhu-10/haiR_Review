@@ -24,7 +24,7 @@ def q_write(request, qna = None):
 #질문 목록
 def q_list(request):
     qnaobj = Question.objects
-    q_sort = request.GET.get('sort','') #정렬
+    q_sort = request.GET.get('q_sort','') #정렬
     if q_sort == 'q_clicks' :
         qnaobj = Question.objects.all().order_by('-q_clicks','-q_date')
     else :

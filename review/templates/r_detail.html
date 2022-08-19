@@ -3,7 +3,8 @@
 <h4>제목 : {{ review.r_title }}</h4>
 <p>작성자 : {{ review.name }} </p>
 <p>작성일자 : {{review.r_date}}</p>
-<p>조회수 : {{review.r_clikes}}</p>
+{{review.r_update_counter}}
+<p>조회수 : {{review.r_clicks}}</p>
 <p>추천수 : {{review.r_likes}}</p><hr>
 <a href="{% url 'r_likes' review.id %}">
     {% if user in review.r_like.all %} 
