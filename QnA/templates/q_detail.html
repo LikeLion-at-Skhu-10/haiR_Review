@@ -1,54 +1,116 @@
-<h1>Q&A게시판 디테일 페이지</h1>
+{% load static %}
 
-<p>작성자 : {{ qna.nickname }}</p>
-<p>작성일 : {{ qna.q_date }}</p>
-{{ qna.q_update_counter }}
-<p>조회수 : {{ qna.q_clicks }}</p>
-<p>추천수 : {{qna.q_likes}}</p><hr>
-<a href="{% url 'q_likes' qna.id %}">
-    {% if user in review.r_like.all %} 
-    취소
-    {% else %} 
-    좋아요
-    {% endif %}
-</a>
-
-
-<h3>{{ qna.question }}</h3> 
-
-{% if qna.q_photo %}
-    <img src = "{{qna.q_photo.url}}" width = "250" height = "250">
-{% endif %}
-
-<br>
-
-{% for hashtag in qna.hashtags.all %}
-     <span>{{ hashtag.name }}</span>
-{% endfor %}
-
-<hr>
-<br>
-<a href = "{% url 'q_edit' qna.id %}">수정하기</a>
-<a href = "{% url 'q_delete' qna.id %}">삭제하기</a>
-<a href = "{% url 'q_list' %}">목록보기</a>
-<br>
-<hr>
-
-
-<h4> 답변 </h4>
-
-{% for answer in qna.answers.all %} 
-    <p> {{ answer.nickname }} : {{ answer.text }} </p>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>머리뷰</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome-ie7.min.css">
+    <![endif]-->
+</head>
     
-    {% if answer.a_photo %}
-        <img src = "{{ answer.a_photo.url }}" width = "250" height = "250">
-    {% endif %}
-    <br> 
+<body>
+    <nav class="navbar">
+        <ul class="nav_menu">
+            <li><a class="nav_li" id="nav_part" href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/list/logo4.png' %}"></a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'r_list' %}"><p id="detail_now">미용실 익명 리뷰</p></a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'q_list' %}">헤어 Q&A</a></li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'f_list' %}">자유게시판</a></li>
+			<li><a class="nav_li" id="nav_part" href="{% url 'h_list' %}">해시태그</a></li>
+        </ul>
 
-{% endfor %}
+        <ul class="nav_user">
+            {% if user.is_active %}
+            <li><a class="nav_li" id="nav_part" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
+            <li class="nav_li">/</li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'logout' %}">로그아웃</a></li>
+            {% else %}
+            <li><a class="nav_li" id="nav_part" href="{% url 'login' %}">로그인</a></li>
+            <li class="nav_li">/</li>
+            <li><a class="nav_li" id="nav_part" href="{% url 'signup' %}">회원가입</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="D_top">
+        <div class="D_top_back" id="D_top_back">
+            <div class="D_hashtag">
+                {% for hashtag in qna.hashtags.all %}
+                <div class="D_tag">
+                    #{{ hashtag.name }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="D_body">
+                {{ qna.question }}
+            </div>
+            <div class="D_contents">
+                <div id="d_date">
+                    {{qna.q_date|date:'Y. m. d'}}
+                </div>
+                <div id="d_look">
+                    <div>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                        </svg>
+                    </div>
+                    <div id="d_see">
+                        {{ qna.q_update_counter }}
+                        <p>조회수 : {{qna.q_clicks}}</p>
+                    </div>
+                </div>
+                <div id="d_like">
+                    <a href="{% url 'q_likes' qna.id %}">
+                        {% if user in qna.q_like.all %} 
+                        <svg class="like-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                        </svg>
+                        {% else %}
+                        <svg class="like-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-heart" viewBox="0 0 16 16">
+                            <path
+                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                        </svg>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            <div class="U_D">
+                <a style="text-decoration: none; color: #A7755E;" href="{% url 'q_edit' qna.id %}">수정하기</a>
+                &nbsp;/&nbsp;
+                <a style="text-decoration: none; color: #A7755E;" href="{% url 'q_delete' qna.id %}">삭제하기</a>
+            </div>
+        </div>
+    </div>
 
-<form method = "POST" action="{% url 'q_detail' qna.id %}">
-    {% csrf_token %}
-    <p> {{ form.as_p }} </p>
-    <input type = "submit" value= "submit">
-</form>
+    <div class="D_bottom">
+        <div class="D_bottom_back">
+            {% for answer in qna.answers.all %} 
+                    <p> {{ answer.nickname }} : {{ answer.text }} </p>
+    
+                    {% if answer.a_photo %}
+                        <img src = "{{ answer.a_photo.url }}" width = "250" height = "250">
+                    {% endif %}
+                    <br> 
+
+            {% endfor %}
+            <br>
+    
+            <form method="POST" action="{% url 'q_detail' qna.id %}">
+                {% csrf_token %} 
+                <p> {{ form.as_p }} </p>
+                <input type="submit" value="submit">
+            </form>
+
+            <hr id="comment_hr">
+        </div>
+    </div>
+</body>
+</html>
