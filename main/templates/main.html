@@ -1,69 +1,77 @@
-<h1>메인페이지</h1>
+{% load static %}
 
-{% if user.is_active %} 
-    <div>{{ user.username }} 님 환영합니다 </div>
-    <a href="{% url 'logout' %}">로그아웃</a>
-    <a href="{% url 'mypage' user.username %}">마이페이지</a>
-{% else %}
-    <a href="{% url 'login' %}">로그인</a>
-    <a href="{% url 'signup' %}">회원가입 </a>
-{% endif %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>머리뷰</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome-ie7.min.css">
+    <![endif]-->
+</head>
+    
+<body>
+    <img class="back_main" src="{% static 'img/main/background_main.png' %}">
+
+    <nav class="navbar_m">
+        <ul class="nav_menu_m">
+            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'r_list' %}">미용실 익명 리뷰</a></li>
+            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'q_list' %}">헤어 Q&A</a></li>
+            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'f_list' %}">자유게시판</a></li>
+			<li><a class="nav_li_m" id="nav_part_m" href="{% url 'h_list' %}">해시태그</a></li>
+        </ul>
+
+        <ul class="nav_user_m">
+            {% if user.is_active %}
+            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
+            <li class="nav_li_m">/</li>
+            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'logout' %}">로그아웃</a></li>
+            {% else %}
+            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'login' %}">로그인</a></li>
+            <li class="nav_li_m">/</li>
+            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'signup' %}">회원가입</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="main_top">
+        <div id="main_sentence">머리에 대하여 말하다,</div>
+        <img class="main_logo" src="{% static 'img/main/logo1.png' %}">
+        <input type="text" class="main_search" placeholder="궁금한 내용을 검색해보세요">
+    </div>
+    <svg id="search_item" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg>
+
+    <!--여기다가 글 요약 띄우기-->
+    <h4>리뷰 게시글 요약</h4> 
+    {% for reviews in reviews.all %} 
+        <h7>후기제목: <a href="{% url 'r_detail' reviews.id %}">{{reviews.r_summary}}...more</a></h7>
+        <a>작성일자 : {{reviews.r_date}}</a><br>
+    {% endfor %}
+
+    <h4>QnA 게시글 요약</h4> 
+    {% for qnaobj in qnaobj.all %} 
+        <h7>QnA_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.q_summary}}...more</a></h7>
+        <a>작성일자 : {{ qnaobj.q_date }}</a><br>
+    {% endfor %}
+
+    <h4>자유 게시글 요약</h4>
+    {% for frees in frees.all %} 
+        <h7>제목 : <a href="{% url 'f_detail' frees.id %}">{{frees.p_summary}}...more</a></h7>
+        <a>작성일자 :  {{frees.p_date}}</a><br>
+    {% endfor %}
 
 
-<hr>
+    <div class="main_bottom">
+        <img id="footer_img_main" src="{% static 'img/main/background_footer.png' %}">
+        <footer id="footer_main">
+            • TAEM MEMBER •<br><br>
+            FRONTEND | MINJEONG, EUNJI<br>
+            BACKEND | QBIN, MYEONGHWAN, MINJI<br><br>
+            Copyright / HaiR_RevieW
+        </footer>
+    </div>
+</body>
+</html>
 
-<h3>검색하기</h3>
-<form  method="POST" action="{% url 'm_search' %}">
-    {% csrf_token %}        
-    <input type="m_search" placeholder="Search" name="m_searched" aria-label="mainSearch">
-    <button type="submit"> 검색 </button>
-</form>
-
-<hr>
-
-<h3>해시태그</h3>
-<a href="{% url 'hashtag' %}">해시태그 추가하기</a>
-<a href="{% url 'h_list' %}">해시태그 목록</a>
-
-<hr>
-
-<h3>북마크</h3>
-<a href="{% url 'bookmark_create' %}">북마크 추가하기</a>
-<a href="{% url 'bookmark_list' %}">북마크 목록</a>
-
-<hr>
-
-<h3>리뷰게시판</h3> 
-<a href="{% url 'r_write' %}">리뷰 게시판 작성하기</a> <br>
-<a href="{% url 'r_list' %}">리뷰 게시판 목록</a> <br>
-
-<h4>리뷰 게시글 요약</h4> 
-{% for reviews in reviews.all %} 
-    <h7>후기제목: <a href="{% url 'r_detail' reviews.id %}">{{reviews.r_summary}}...more</a></h7>
-    <a>작성일자 : {{reviews.r_date}}</a><br>
-{% endfor %}
-
-
-<hr>
-
-<h3>QnA게시판</h3> 
-<a href="{% url 'q_write' %}">QnA 게시판 작성하기</a> <br>
-<a href="{% url 'q_list' %}">QnA 게시판 목록</a> <br>
-
-<h4>QnA 게시글 요약</h4> 
-{% for qnaobj in qnaobj.all %} 
-    <h7>QnA_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.q_summary}}...more</a></h7>
-    <a>작성일자 : {{ qnaobj.q_date }}</a><br>
-{% endfor %}
-
-<hr>
-
-<h3>자유게시판</h3> 
-<a href="{% url 'f_write' %}">자유 게시판 작성하기</a> <br>
-<a href="{% url 'f_list' %}">자유 게시판 목록</a> <br>
-
-<h4>자유 게시글 요약</h4>
-{% for frees in frees.all %} 
-    <h7>제목 : <a href="{% url 'f_detail' frees.id %}">{{frees.p_summary}}...more</a></h7>
-    <a>작성일자 :  {{frees.p_date}}</a><br>
-{% endfor %}
