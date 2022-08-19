@@ -2,6 +2,8 @@
 
 <p>작성자 : {{ qna.nickname }}</p>
 <p>작성일 : {{ qna.q_date }}</p>
+{{ qna.q_update_counter }}
+<p>조회수 : {{ qna.q_clicks }}</p>
 <p>추천수 : {{qna.q_likes}}</p><hr>
 <a href="{% url 'q_likes' qna.id %}">
     {% if user in review.r_like.all %} 
@@ -10,14 +12,7 @@
     좋아요
     {% endif %}
 </a>
-<p> 스크랩수 : {{review.r_clips}}</p>
-<a href="{% url 'q_clips' review.id %}">
-    {% if user in review.r_clip.all %} 
-    취소
-    {% else %} 
-    스크랩
-    {% endif %}
-</a>
+
 
 <h3>{{ qna.question }}</h3> 
 

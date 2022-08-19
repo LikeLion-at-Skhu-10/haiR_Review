@@ -26,6 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main.views.main, name = 'main'),
     path('hashtag', main.views.hashtag, name = 'hashtag'),
+    path('m_search/',main.views.m_search, name="m_search"),
+    path('h_list', main.views.h_list, name='h_list'),
 
     path('', include('account.urls')),
     path('', include('free.urls')),

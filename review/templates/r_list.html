@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,6 +35,24 @@
             {% endif %}
         </ul>
     </nav>
+
+<!-- 검색 -->
+<form  method="POST" action="{% url 'r_search' %}">
+    {% csrf_token %}        
+    <input type="search" placeholder="검색어를 입력해주세요" name="r_searched" aria-label="검색창">
+    <button type="submit"> 검색 </button>
+</form>
+
+<!-- 정렬 -->
+<form method="GET" action="{% url 'r_list' %}">
+    <div class="col-4">
+    <select name="sort" id="sort">
+        <option value="r_date" id="r_date">최신순</option>
+        <option value="r_clicks" id="r_clicks">조회수순</option>
+    </select>
+    <button class="btn btn-primary" type="submit" value="">정렬</button>
+    </div>
+</form>
 
     <div class="list_layout">
         <div class="list_back">
@@ -71,7 +90,8 @@
                             </td>
                             <td id="list_td">{{ reviews.name }}</td>
                             <td id="list_td">{{ reviews.r_date|date:'Y.m.d' }}</td>
-                            <td id="list_td">{{ reviews.r_clips }}</td>
+							{{review.r_update_counter}}
+                            <td id="list_td">{{ reviews.r_clicks }}</td>
                             <td id="list_td">{{ reviews.r_likes }}</td>
                         </tr>
                     </tbody>

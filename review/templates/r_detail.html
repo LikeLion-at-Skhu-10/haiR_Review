@@ -51,8 +51,23 @@
             </div>
             <div class="D_body">
                 {{review.r_body}}
-            </div>
-            <div class="D_contents">
+			</div>
+			{% if review.r_photo %}
+			후기 사진 : <br>
+			<img src="{{ review.r_photo.url }}" width="250" height="250" alt="r_photo">
+			{% endif %}
+			<br>
+			{% if review.r_receipt %}
+			영수증 인증 : <br>
+			<img src="{{ review.r_receipt.url }}" width="250" height="250" alt="r_receipt">
+			{% endif %}
+			
+			<br>
+			{% for hashtag in review.hashtags.all %}
+			<span> {{ hashtag.name }} </span>
+			{% endfor %}
+			
+			<div class="D_contents">
                 <div id="d_date">
                     {{review.r_date|date:'Y. m. d'}}
                 </div>
@@ -66,7 +81,8 @@
                         </svg>
                     </div>
                     <div id="d_see">
-                        0{{review.r_clicks}}
+						{{review.r_update_counter}}
+                        {{review.r_clicks}}
                     </div>
                 </div>
                 <div id="d_like">
@@ -97,18 +113,17 @@
 
     <div class="D_bottom">
         <div class="D_bottom_back">
-            {% for comment in review.r_comments.all %}
-            <p> {{ comment.name }} : {{ comment.text }} </p>
-            {% endfor %}
-            <br>
     
             <form method="POST" action="{% url 'r_detail' review.id %}">
                 {% csrf_token %}
                 <p> {{ form.as_p }}</p>
                 <input type="submit" value="submit">
             </form>
-            <hr id="comment_hr">
+			{% for r_comment in review.r_comments.all %} 
+            <p> {{ r_comment.name }} : {{ r_comment.text }} </p>
+			<hr id="comment_hr">
+            {% endfor %}
         </div>
     </div>
 </body>
-</html>```
+</html>

@@ -37,8 +37,6 @@ def r_list(request):
         reviews = Review.objects.all().order_by('-r_clicks','-r_date')
     else:
         reviews = Review.objects.all().order_by('-r_date')
-    #default_r_clikes = blogs.r_clikes
-    # blogs.r_clikes = default_r_clikes +1
     return render(request, 'r_list.html', {'reviews':reviews, 'sort':r_sort})
 
 
@@ -59,14 +57,14 @@ def r_page(request):
 #리뷰 글 상세페이지
 def r_detail(request, id):
     review = get_object_or_404(Review, id=id)
-
     if request.method == "POST" :
         form = r_commentForm(request.POST)
         if form.is_valid() :
-            comment = form.save(commit = False)
-            comment.r_id = review
-            comment.text = form.cleaned_data['text']
-            comment.save()
+            r_comment = form.save(commit = False)
+            r_comment.r_id = review
+            r_comment.text = form.cleaned_data['text']
+            r_comment.save()
+            form.save_m2m()
             return redirect('r_detail', id)
             
     else :
@@ -118,3 +116,16 @@ def r_clip(request, r_id):
         like_b.r_clips += 1
         like_b.save()
     return redirect('/r_detail/' + str(r_id))
+
+#검색
+def r_search(request):
+        if request.method == 'POST':
+                r_searched = request.POST['r_searched']        
+                r_serobj = Review.objects.filter(r_title__contains=r_searched)
+                return render(request, 'r_search.html', {'r_searched': r_searched,'r_serobj':r_serobj})
+        elif request.method == 'POST' :
+                r_searched = request.POST['r_searched']        
+                r_serobj = Review.objects.filter(r_body__contains=r_searched)
+                return render(request, 'r_search.html', {'r_searched': r_searched,'r_serobj':r_serobj})
+        else:       
+                return render(request, 'r_search.html', {})
