@@ -15,22 +15,22 @@
 <body>
     <nav class="navbar">
         <ul class="nav_menu">
-            <li><a class="nav_li" id="nav_part" href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/list/logo4.png' %}"></a></li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'r_list' %}"><p id="detail_now">미용실 익명 리뷰</p></a></li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'q_list' %}">헤어 Q&A</a></li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'f_list' %}">자유게시판</a></li>
-			<li><a class="nav_li" id="nav_part" href="{% url 'h_list' %}">해시태그</a></li>
+            <li><a href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/list/logo4.png' %}"></a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'r_list' %}">미용실 익명 리뷰</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'q_list' %}">헤어 Q&A</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" id="list_now" href="{% url 'f_list' %}">자유게시판</a></li>
+			<li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'h_list' %}">해시태그</a></li>
         </ul>
 
         <ul class="nav_user">
             {% if user.is_active %}
-            <li><a class="nav_li" id="nav_part" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
-            <li class="nav_li">/</li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'logout' %}">로그아웃</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
+            <li class="nav_position" id="nav_li">/</li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'logout' %}">로그아웃</a></li>
             {% else %}
-            <li><a class="nav_li" id="nav_part" href="{% url 'login' %}">로그인</a></li>
-            <li class="nav_li">/</li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'signup' %}">회원가입</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'login' %}">로그인</a></li>
+            <li class="nav_position" id="nav_li">/</li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'signup' %}">회원가입</a></li>
             {% endif %}
         </ul>
     </nav>

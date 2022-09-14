@@ -81,19 +81,33 @@ body {
 } /* 단어 간격 */
 
 .nav_li {
-    color: #A7755E;
+    color: #C2AB99;
     text-decoration: none;
     font-size: 1.6vw;
 } /* 왜인지 부모요소에서 적용하면 안 먹어서... */
 
-#nav_part:hover {
-    color: #FFBA00;
+#nav_li {
+    color: #C2AB99;
+    text-decoration: none;
+    font-size: 1.6vw;
+} /* 왜인지 부모요소에서 적용하면 안 먹어서... */
+
+
+.nav_position {
+	padding-top: 0.7vw; /* a 태그 안에 넣으면 안 먹음. 왜? */
+}
+
+#nav_part a:hover {
+    color: #A7755E;
 }/* id로 하면 되고 class로 하면 왜 안 되지...? */
 
 ul {
     list-style:none;
 }
 
+#list_now {
+	color: #A7755E;
+}
 
 
 .D_top {

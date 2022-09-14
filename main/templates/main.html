@@ -39,7 +39,10 @@
     <div class="main_top">
         <div id="main_sentence">머리에 대하여 말하다,</div>
         <img class="main_logo" src="{% static 'img/main/logo1.png' %}">
-        <input type="text" class="main_search" placeholder="궁금한 내용을 검색해보세요">
+		<form  method="POST" action="{% url 'm_search' %}" class="main_search">
+			{% csrf_token %}        
+			<input class="main_input" type="m_search" name="m_searched" aria-label="mainSearch" placeholder="궁금한 내용을 검색해보세요">
+		</form>
     </div>
 
     <svg id="search_item" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -51,8 +54,8 @@
 	<div class="summary">
 		<p>리뷰 게시판 게시글</p>
 		{% for reviews in reviews.all %}
-		<h7>후기제목: <a href="{% url 'r_detail' reviews.id %}">{{reviews.r_summary}}...more</a></h7>
-		<a>작성일자 : {{reviews.r_date}}</a><br>
+		<a href="{% url 'r_detail' reviews.id %}">{{reviews.r_summary}}...
+		{{reviews.r_date|date:'Y.m.d'}}</a><br>
 		{% endfor %}
 	</div>
 	
@@ -60,8 +63,8 @@
 	<div class="summary">
 		<p>QnA 게시판 게시글</p>
 		{% for qnaobj in qnaobj.all %}
-		<h7>QnA_제목 : <a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.q_summary}}...more</a></h7>
-		<a>작성일자 : {{ qnaobj.q_date }}</a><br>
+		<a href="{% url 'q_detail' qnaobj.id %}">{{qnaobj.q_summary}}...
+		{{ qnaobj.q_date|date:'Y.m.d' }}</a><br>
 		{% endfor %}
 	</div>
 	
@@ -69,15 +72,15 @@
 	<div class="summary">
 		<p>자유 게시판 게시글</p>
 		{% for frees in frees.all %}
-		<h7>제목 : <a href="{% url 'f_detail' frees.id %}">{{frees.p_summary}}...more</a></h7>
-		<a>작성일자 : {{frees.p_date}}</a><br>
+		<a href="{% url 'f_detail' frees.id %}">{{frees.p_summary}}...
+		{{frees.p_date|date:'Y.m.d'}}</a><br>
 		{% endfor %}
 	</div>
 
     <div class="main_bottom">
         <img id="footer_img_main" src="{% static 'img/main/background_footer.png' %}">
         <footer id="footer_main">
-            • TAEM MEMBER •<br><br>
+            • TEAM MEMBER •<br><br>
             FRONTEND | MINJEONG, EUNJI<br>
             BACKEND | QBIN, MYEONGHWAN, MINJI<br><br>
             Copyright / HaiR_RevieW

@@ -86,9 +86,23 @@ body {
     font-size: 1.6vw;
 } /* 왜인지 부모요소에서 적용하면 안 먹어서... */
 
-#nav_part:hover {
+#nav_li {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.6vw;
+} /* 왜인지 부모요소에서 적용하면 안 먹어서... */
+
+.nav_position {
+	padding-top: 0.7vw; /* a 태그 안에 넣으면 안 먹음. 왜? */
+}
+
+#nav_part a:hover {
     color: #403964;
 }/* id로 하면 되고 class로 하면 왜 안 되지...? */
+
+ul {
+    list-style:none;
+}
 
 ul {
     list-style:none;

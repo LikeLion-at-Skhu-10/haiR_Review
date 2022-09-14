@@ -15,22 +15,22 @@
 <body>
     <nav class="navbar">
         <ul class="nav_menu">
-            <li><a class="nav_li" id="nav_part" href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/list/logo4.png' %}"></a></li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'r_list' %}"><p id="list_now">미용실 익명 리뷰</p></a></li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'q_list' %}">헤어 Q&A</a></li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'f_list' %}">자유게시판</a></li>
-			<li><a class="nav_li" id="nav_part" href="{% url 'h_list' %}">해시태그</a></li>
+            <li><a href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/list/logo4.png' %}"></a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" id="list_now" href="{% url 'r_list' %}">미용실 익명 리뷰</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'q_list' %}">헤어 Q&A</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'f_list' %}">자유게시판</a></li>
+			<li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'h_list' %}">해시태그</a></li>
         </ul>
 
         <ul class="nav_user">
             {% if user.is_active %}
-            <li><a class="nav_li" id="nav_part" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
-            <li class="nav_li">/</li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'logout' %}">로그아웃</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
+            <li class="nav_position" id="nav_li">/</li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'logout' %}">로그아웃</a></li>
             {% else %}
-            <li><a class="nav_li" id="nav_part" href="{% url 'login' %}">로그인</a></li>
-            <li class="nav_li">/</li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'signup' %}">회원가입</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'login' %}">로그인</a></li>
+            <li class="nav_position" id="nav_li">/</li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'signup' %}">회원가입</a></li>
             {% endif %}
         </ul>
     </nav>
@@ -42,7 +42,7 @@
 
 				<!-- 정렬 -->
 				<form method="GET" action="{% url 'r_list' %}">
-					<div class="col-4">
+					<div>
 						<select name="sort" id="sort" class="list_sort">
 							<option value="r_date" id="r_date">최신순</option>
 							<option value="r_clicks" id="r_clicks">조회수순</option>
@@ -58,7 +58,9 @@
 					<button class="list_search_button" type="submit"> 검색 </button>
 				</form>
 
+				<!-- 글작성 -->
 				<a class="list_write" type="submit" href="{% url 'r_write' %}">글쓰기</a>
+				
 			</div>
 
             <div class="list_table">

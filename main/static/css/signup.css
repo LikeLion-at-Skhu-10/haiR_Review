@@ -21,6 +21,21 @@ body {
     color: rgb(255, 255, 255);
 }
 
+.big_signup {
+    margin-left: auto;
+    margin-top: auto;
+}
+
+.back_mypage {
+	grid-column: 2;
+	display: flex;
+	width: 42vw;
+	height: auto;
+	bottom: 0;
+	position: fixed;
+	margin-left: 50vw;
+}
+
 .password_signup {
     font-family: 'GangwonEdu_OTFBoldA';
     margin-top: 1.92cm;
@@ -40,19 +55,22 @@ body {
     margin-top: 0.86cm;
 }
 
-.realusername_signup {
-    margin-left: 3.69cm;
-    margin-top: 0.86cm;
-}
-
 .password2_signup {
     margin-left: 2.3cm;
     margin-top: 0.86cm;
 }
 
-#username, #password1, #password2, #realusername, #phonenumber, #email, #username2 {
-    margin-left: 4.98cm;
-    margin-top: 2.29cm;
+#id_username, #id_password1, #id_password2, #id_phonenumber, #id_email, #id_username2 {
+    background-color: #403964;
+    border: none;
+}
+
+#id_username {
+    border-bottom: 1px solid #FFBA00;
+}
+
+#id_password1, #id_password2, #id_phonenumber, #id_email, #id_username2 {
+    border-bottom: 1px solid white;
 }
 
 .purple_signup {

@@ -14,40 +14,55 @@
 <body>
     <nav class="navbar">
         <ul class="nav_menu">
-            <li><a class="nav_li" id="nav_part" href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/list/logo4.png' %}"></a></li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'r_list' %}"><p id="list_now">미용실 익명 리뷰</p></a></li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'q_list' %}">헤어 Q&A</a></li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'f_list' %}">자유게시판</a></li>
-			<li><a class="nav_li" id="nav_part" href="{% url 'h_list' %}">해시태그</a></li>
+            <li><a href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/list/logo4.png' %}"></a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'r_list' %}">미용실 익명 리뷰</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" id="list_now" href="{% url 'q_list' %}">헤어 Q&A</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'f_list' %}">자유게시판</a></li>
+			<li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'h_list' %}">해시태그</a></li>
         </ul>
 
         <ul class="nav_user">
             {% if user.is_active %}
-            <li><a class="nav_li" id="nav_part" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
-            <li class="nav_li">/</li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'logout' %}">로그아웃</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
+            <li class="nav_position" id="nav_li">/</li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'logout' %}">로그아웃</a></li>
             {% else %}
-            <li><a class="nav_li" id="nav_part" href="{% url 'login' %}">로그인</a></li>
-            <li class="nav_li">/</li>
-            <li><a class="nav_li" id="nav_part" href="{% url 'signup' %}">회원가입</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'login' %}">로그인</a></li>
+            <li class="nav_position" id="nav_li">/</li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'signup' %}">회원가입</a></li>
             {% endif %}
         </ul>
     </nav>
 
     <div class="list_layout">
         <div class="list_back">
+
             <div class="list_form">
+
+				<!-- 정렬 -->
                 <form method="GET" action="{% url 'q_list' %}">
                     <div>
-                        <select name="q_sort" id="q_sort">
+                        <select name="q_sort" id="q_sort" class="list_sort">
                             <option value="q_date" id="q_date">최신순</option>
                             <option value="q_clicks" id="q_clicks">조회수순</option>
                         </select>
-                        <button type="submit" value="">정렬</button>
+                        <button class="list_sort_button" type="submit" value="">정렬</button>
                     </div>
-                    <a type="submit" href="{% url 'q_write' %}"></a>
                 </form>
+
+				<!-- 검색 -->
+				<form method="POST" action="{% url 'q_search' %}">
+					{% csrf_token %}
+					<input class="list_search" type="search" name="q_searched" aria-label="검색창">
+					<button class="list_search_button" type="submit"> 검색 </button>
+				</form>
+
+				<!-- 글작성 -->
+				<a class="list_write" type="submit" href="{% url 'q_write' %}">글쓰기</a>
+
             </div>
+
+
             <div class="list_table">
                 <table>
                     <!--table에는 grid적용이 안되나봐-->

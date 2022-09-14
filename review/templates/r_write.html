@@ -1,10 +1,96 @@
-<h1>리뷰게시판 글쓰기 페이지</h1>
+{% load static %}
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %} 
-    <table>
-        {{ form.as_table }}
-        
-    </table>
-    <button type="submit">작성</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/r_write.css' %}">
+	<title>r_write</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="nav_menu">
+            <li id="logo_nav_img"><a class="nav_li" href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/create/logo5.png' %}"></a></li>
+            <li id="nav_part"><a class="nav_li" href="{% url 'r_list' %}" id="list_now">미용실 익명 리뷰</a></li>
+            <li id="nav_part"><a class="nav_li" href="{% url 'q_list' %}">헤어 Q&A</a></li>
+            <li id="nav_part"><a class="nav_li" href="{% url 'f_list' %}">자유게시판</a></li>
+			<li id="nav_part"><a class="nav_li" href="{% url 'h_list' %}">해시태그</a></li>
+        </ul>
+
+        <ul class="nav_user">
+            {% if user.is_active %}
+            <li id="nav_part"><a class="nav_li" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
+            <li class="nav_li" id="nav_slash">/</li>
+            <li id="nav_part"><a class="nav_li" href="{% url 'logout' %}">로그아웃</a></li>
+            {% else %}
+            <li id="nav_part"><a class="nav_li" href="{% url 'login' %}">로그인</a></li>
+            <li class="nav_li" id="nav_slash">/</li>
+            <li id="nav_part"><a class="nav_li" href="{% url 'signup' %}">회원가입</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+	{% block content %}
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<input type="hidden" name="csrfmiddlewaretoken"
+			value="qG2jqW5dF85CkEHeIUGSVtGb70U6iPuoSnl5cSntXeguv4OqiC9GuMLQ34bAF5s9">
+		<label class="form_table"></label>
+		<table>
+			<tbody>
+				<tr>
+					<th><label for="id_r_title"></label></th>
+					<td>
+						<input type="text" name="r_title" maxlength="200" required="" id="id_r_title"
+							placeholder="제목을 입력해 주세요.">
+					</td>
+					<label for="id_r_photo"></label>
+					<td>
+						<input type="file" name="r_photo" accept="image/*" id="id_r_photo" placeholder="사진 첨부">
+					</td>
+				</tr>
+				<tr>
+					<th><label for="id_r_body"></label></th>
+					<td>
+						<textarea name="r_body" cols="70" rows="10" required="" id="id_r_body"
+							placeholder="내용을 입력해 주세요."></textarea>
+					</td>
+					<label for="id_r_receipt"></label>
+					<td>
+						<input type="file" name="r_receipt" accept="image/*" id="id_r_receipt" placeholder="영수증 사진 첨부">
+					</td>
+				</tr>
+				<tr>
+					<th><label for="id_r_name"></label></th>
+					<td>
+						<input type="text" name="r_name" maxlength="20" id="id_r_name"
+							placeholder="미용실 이름을 입력하세요 ex) A미용실 OO점">
+					</td>
+				</tr>
+				<tr>
+					<th><label for="id_r_location"></label></th>
+					<td>
+						<input type="text" name="r_location" maxlength="20" id="id_r_location" sytle="display:inline"
+							placeholder="지역을 입력하세요 ex) OO구 OO동">
+					</td>
+				</tr>
+				<tr>
+					<th><label for="id_hashtags"></label></th>
+					<td>
+						<select name="hashtags" id="id_hashtags" multiple="" placeholder="#미용실 후기"></select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="r_write" type="submit">작성</button>
+	</form>
+	{% endblock %}
+	<footer>
+		Copyright&copy; 성공회대학교 멋쟁이사자처럼 10기 머리뷰
+	</footer>
+</body>
+
+</html>

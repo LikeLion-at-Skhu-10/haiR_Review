@@ -48,7 +48,7 @@ body {
     margin-top: 0;
     width: 100%;
     display: grid;
-    grid-template-columns: 4fr 2fr;
+    grid-template-columns: 5fr 2fr;
     grid-template-rows: 5vw;
 }
 
@@ -60,7 +60,7 @@ body {
 .nav_menu {
     grid-column: 1;
     display: flex;
-    align-items: center;  /* 세로정렬 */
+    align-items: bottom;  /* 세로정렬 */
     justify-self: left;
 }
 
@@ -71,7 +71,7 @@ body {
 .nav_user {
     grid-column: 2;
     display: flex;
-    align-items: center;
+    align-items: bottom;
     justify-self: right;
     margin-right: 3vw;
 }
@@ -86,7 +86,17 @@ body {
     font-size: 1.6vw;
 } /* 왜인지 부모요소에서 적용하면 안 먹어서... */
 
-#nav_part:hover {
+#nav_li {
+    color: #C2AB99;
+    text-decoration: none;
+    font-size: 1.6vw;
+} /* 왜인지 부모요소에서 적용하면 안 먹어서... */
+
+.nav_position {
+	padding-top: 0.7vw; /* a 태그 안에 넣으면 안 먹음. 왜? */
+}
+
+#nav_part a:hover {
     color: #A7755E;
 }/* id로 하면 되고 class로 하면 왜 안 되지...? */
 
@@ -94,7 +104,18 @@ ul {
     list-style:none;
 }
 
+#list_now {
+	color: #A7755E;
+}
+
 /* 글 목록 css */
+
+.m_result {
+	font-family: 'GangwonEdu_OTFBoldA';
+	color: #A7755E;
+	margin-left: 2vw;
+	font-size: 3vw;
+}
 
 .list_layout {
     display: grid;
@@ -146,10 +167,7 @@ table {
     font-size: 1.5vw;
     border-bottom: 1px solid #C2AB99;
     color: rgb(111, 111, 111);
-}
-
-#list_td a{
-    white-space:nowrap; /* 한글 세로로 출력되는 오류 수정 */
+	white-space:nowrap; /* 한글 세로로 출력되는 오류 수정 */
 }
 
 .list_back {
@@ -158,10 +176,6 @@ table {
     background-color: #F4EBE2;
     padding: 3vw;
     box-shadow: 1vw 1vw #C2AB99;
-}
-
-#list_now {
-	color: #A7755E;
 }
 
 .list_search {
@@ -217,4 +231,6 @@ table {
 	padding-right: 0.7vw;
 	padding-top: 0.4vw;
 	padding-bottom: 0.2vw;
+	display: flex;
+    align-items: center;
 }

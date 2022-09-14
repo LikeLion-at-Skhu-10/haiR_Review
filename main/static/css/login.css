@@ -13,13 +13,17 @@
 }
 
 body {
-    background-image: src="{% static 'img/img.png' %}";
     background-color: #403964;
 }
 
 .login {
     color: rgb(255, 255, 255);
     margin-top: 1.03cm;
+}
+
+.big_login {
+    margin-left: 125px;
+    margin-top: 20px;
 }
 
 .search {
@@ -38,10 +42,19 @@ body {
 }
 
 .first_logo {
-    width: 4.14cm;
     height: 2.15cm;
-    margin-left: 3.52cm;
+    margin-left: 3.5cm;
     margin-top: 0.52cm;
+}
+
+.back_mypage {
+	grid-column: 2;
+    display: flex;
+	width: 42vw;
+	height: auto;
+	bottom: 0;
+	position: fixed;
+	margin-left: 50vw;
 }
 
 .password {
@@ -49,19 +62,38 @@ body {
 }
 
 #id_username, #id_password {
+    font-family: 'GangwonEdu_OTFBoldA';
     color: rgb(255, 255, 255);
+    background-color: #403964;
     margin-left: 0.4cm;
+    border: none;
+    width: 172px;
+}
+
+#id_username {
+    border-bottom: 1px solid #FFBA00;
+    color: #FFBA00;
+}
+
+#id_password {
+    background-color: #403964;
+    border-bottom: 1px solid #FFFFFF;
 }
 
 .username_login {
     margin-left: 2.94cm;
-    margin-top: 0.6cm;
+    color: #FFBA00;
+    background-color: #403964;
+}
+
+.username_account {
     color: #FFBA00;
 }
 
 .password_login {
     margin-left: 2.62cm;
     margin-top: 0.6cm;
+    background-color: #403964;
 }
 
 .checkbox {

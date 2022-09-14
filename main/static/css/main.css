@@ -56,7 +56,7 @@ body {
     width: 100%;
     background-color: #403964;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1.3fr 3fr 1.3fr;
     grid-template-rows: 5vw;
     z-index: 1000;
 }
@@ -133,19 +133,22 @@ ul {
     grid-row: 2;
     display: flex;
     justify-self: center;
+	width: 100%;
+}
 
+.main_input{
+	width: 100%;
     height: 3.7vw;
-    width: 100%;
     background-color: #8F87A7;
     border: 0;
     font-family: 'Pretendard-Regular';
     font-size: 2vw;
     color: #403964;
     border-radius: 0.5vw;
-    padding: 0.3vw 1vw 0.3vw 4vw; /* pdding이든 margin이든 상우하좌로 시계방향 */
+    padding: 0.3vw 5vw 0.3vw 2vw; /* pdding이든 margin이든 상우하좌로 시계방향 */
 }
 
-.main_search::placeholder{ /* 검색 유도 문구 */
+.main_input::placeholder{ /* 검색 유도 문구 */
     color: #403964;
 }
 
@@ -153,7 +156,7 @@ ul {
     fill: #403964; /* svg 형식의 색을 채우는 방식 */
     position: absolute;
     width: 1.7vw;
-    left: 27.2vw;
+    right: 30.5vw;
     top: 20.6vw;
 }
 
@@ -183,6 +186,7 @@ p {
     font-size: 20px;
 	border-bottom: 1px solid #403964;
 	font-family: 'GangwonEdu_OTFBoldA';
+	color: #403964;
 }
 
 .summary {
@@ -197,4 +201,10 @@ p {
 	margin-right: 10vw;
 	margin-left: 10vw;
     /* background-color: #8F87A7; */
+}
+
+div a {
+	text-decoration: none;
+	font-family: 'Pretendard-Regular';
+	color: rgb(111, 111, 111);
 }

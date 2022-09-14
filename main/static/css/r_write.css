@@ -14,8 +14,136 @@
 
 body {
     background-color: #F7ECDA;
+	margin: 0;
+    overflow-x: hidden;
 }
 
-.form_table {
+
+/* 네브바 시작 */
+
+.navbar {
+    font-family: 'GangwonEdu_OTFBoldA';
+    /* 스크롤 내려도 navbar상단 고정 */
+    top: 0;
+    /* 스크롤 내려도 navbar상단 고정 */
+    padding-top: 0;
+    margin-top: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    grid-template-rows: 5vw;
+}
+
+#logo_leo {
+    width: 5vw;
+    height: auto;
+}
+
+.nav_menu {
+    grid-column: 1;
+    display: flex;
+    align-items: center;  /* 세로정렬 */
+    justify-self: left;
+}
+
+.nav_menu li {
+    margin-right: 6vw;
+} /* 단어 간격 */
+
+.nav_user {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    justify-self: right;
+    margin-right: 3vw;
+}
+
+.nav_user li {
+    margin-left: 1vw;
+} /* 단어 간격 */
+
+.nav_li {
+    color: #8F87A7;
+    text-decoration: none;
+    font-size: 1.6vw;
+} /* 왜인지 부모요소에서 적용하면 안 먹어서... */
+
+#nav_slash {
+	padding-top: 0.7vw; /* a 태그 안에 넣으면 안 먹음 */
+}
+
+#nav_part {
+	padding-top: 0.7vw; /* a 태그 안에 넣으면 안 먹음. 왜? */
+}
+
+#logo_nav_img {
+	padding: 0.4vw;
+}
+
+#nav_part:hover {
+    color: #403964;
+}/* id로 하면 되고 class로 하면 왜 안 되지...? */
+
+ul {
+    list-style:none;
+}
+
+#list_now {
+	color: #403964;
+}
+
+/* 네브바 끝 */
+
+
+
+
+.form-control {
+    background-color: #8F87A7;
+    border-radius: 30px;
+    width: 7cm;
+    height: 0.7cm;
+    margin-right: 50px;
+}
+
+#id_r_title, #id_r_body, #id_r_name, #id_r_location {
+    width: 543.5px;
+}
+
+/* #id_r_name, #id_r_location {
+    width: 271.8px;
+} */
+
+#id_r_photo, #id_r_receipt {
+    color: #A79EB3;
+    font-family: 'GangwonEdu_OTFBoldA';
+    padding-left: 200px;
+}
+
+#id_r_receipt {
+    padding-bottom: 221px;
+}
+
+.form_table, footer {
     font-family: 'Pretendard-Regular';
+}
+
+footer {
+    margin-left: 0.09cm;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.r_write {
+    font-family: 'GangwonEdu_OTFBoldA';
+    color: #A79EB3;
+    border-radius: 5px;
+    border: solid #707070 1px;
+    background-color: white;
+    margin-left: 0.09cm;
+}
+
+form {
+	margin-left: 0.8cm;
 }
