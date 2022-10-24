@@ -100,7 +100,6 @@ ul {
     grid-template-columns: 1.3fr 2fr 1.3fr;
     grid-template-rows: 2.5fr 1fr;
     gap: 1.5vw;
-
     width: 100%; /* 포지션이 absolute인지라 한쪽으로 쏠리는 바람에 */
     position: absolute;
     top: 7vw; /* vw : 창의 가로넓이에 비례해서 반응 */
@@ -112,7 +111,6 @@ ul {
     display: flex;
     justify-self: right;
     align-self: end;
-
     width: 47%;
     height: auto;
 }

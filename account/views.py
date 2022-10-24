@@ -9,7 +9,6 @@ from account.models import Profile
 def mypage(request) :
 	return render (request, 'mypage.html ') 
 
-
 #회원가입
 def signup(request):
     if request.method == 'POST':
@@ -27,12 +26,10 @@ def signup(request):
                     auth.login(request, user)
                     return redirect('main')
             else:
-            
-                    return render(request, 'signup.html' , {'form':form})
+                return render(request, 'signup.html' , {'form':form})
     else:        
         form = UserCreationForm()
         return render(request, 'signup.html' , {'form':form})
-
 
 #로그인 
 def login(request):
@@ -49,7 +46,6 @@ def login(request):
         form = AuthenticationForm()
         return render(request, 'login.html' , {'form':form})
 
-
 #로그아웃 
 def logout(request) :
     auth.logout(request)
@@ -59,7 +55,6 @@ def logout(request) :
 def mypage(request, username) :
         profile = get_object_or_404(User, username = username) 
         return render(request, 'mypage.html', {'profile':profile})
-
 
 #프로필 수정하기
 # def profile(request) :
