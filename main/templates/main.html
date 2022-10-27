@@ -21,17 +21,18 @@
             <li><a class="nav_li_m" id="nav_part_m" href="{% url 'q_list' %}">헤어 Q&A</a></li>
             <li><a class="nav_li_m" id="nav_part_m" href="{% url 'f_list' %}">자유게시판</a></li>
 			<li><a class="nav_li_m" id="nav_part_m" href="{% url 'h_list' %}">해시태그</a></li>
+            
         </ul>
 
         <ul class="nav_user_m">
-            {% if user.is_active %}
-            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
-            <li class="nav_li_m">/</li>
-            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'logout' %}">로그아웃</a></li>
+            {% if user.is_authenticated %}
+            <h3> {{ user.username }}님 환영합니다.</h3>
+            <a class="nav_li_m" id="nav_part_m"href="{% url 'logout' %}">로그아웃</a>
+            <span> <a class="nav_li_m" id="nav_part_m" href="{% url 'mypage' user.username %}">{{user.username }}의 페이지</a></span>
             {% else %}
-            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'login' %}">로그인</a></li>
-            <li class="nav_li_m">/</li>
-            <li><a class="nav_li_m" id="nav_part_m" href="{% url 'signup' %}">회원가입</a></li>
+            <a class="nav_li_m" id="nav_part_m" href="{% url 'signup' %}">회원가입 / </a>
+           
+            <a class="nav_li_m" id="nav_part_m" href="{% url 'login' %}">로그인</a>
             {% endif %}
         </ul>
     </nav>

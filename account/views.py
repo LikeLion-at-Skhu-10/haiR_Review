@@ -1,80 +1,88 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import auth
-from django.contrib.auth.models import User
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-#from account.forms import CustomUserChangeForm ,ProfileForm
-from account.models import Profile
+from django.contrib.auth import login as auth_login 
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import get_user_model
+from .forms import CustomUserChangeForm
+from django.contrib.auth.decorators import login_required
+from .models import Profile
+from .forms import ProfileForm
+from django.contrib.auth.forms import PasswordChangeForm
+# jango.contrib.auth 내 함수 login을 import함.
+# (views.py 내 정의한 함수 login과 구분하기 위해 auth_log로 재 명명함)
 
-#마이페이지
-def mypage(request) :
-	return render (request, 'mypage.html ') 
+# Create your views here.
 
-
-#회원가입
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('main')
+        
     if request.method == 'POST':
-            form = UserCreationForm(request.POST)
-            if request.POST["password1"] == request.POST["password2"]:
-                    user = User.objects.create_user(
-                    username = request.POST["username"],
-                    password = request.POST["password1"]
-                    )
-                    nickname = request.POST["nickname"],
-                    email = request.POST["email"],
-                    p_num = request.POST["p_num"]
-                    profile = Profile(user=user, nickname=nickname, email=email, p_num= p_num )
-                    profile.save()
-                    auth.login(request, user)
-                    return redirect('main')
-            else:
-            
-                    return render(request, 'signup.html' , {'form':form})
-    else:        
-        form = UserCreationForm()
-        return render(request, 'signup.html' , {'form':form})
+        signup_form = UserCreationForm(request.POST)
+        if signup_form.is_valid():
+            user = signup_form.save()
+            Profile.objects.create(user=user) #프로필 생성
+            auth_login(request, user)
+            return redirect('main')
+    
+    else:
+        signup_form = UserCreationForm()
+    
+    return render(request, 'signup.html', {'signup_form': signup_form})
 
-
-#로그인 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('main')
     if request.method == 'POST':
-            form = AuthenticationForm(data=request.POST)
-            if form.is_valid():
-                    user = form.get_user()
-                    auth.login(request, user)
-                    return redirect('main')
-            else:
-            
-                    return render(request, 'login.html' , {'form':form})
-    else:        
-        form = AuthenticationForm()
-        return render(request, 'login.html' , {'form':form})
+        login_form = AuthenticationForm(request, request.POST)
+        if login_form.is_valid():
+            auth_login(request, login_form.get_user())
+        return redirect('main')
+    
+    else:
+        login_form = AuthenticationForm()
+    
+    return render(request, 'login.html', {'login_form' : login_form})
 
-
-#로그아웃 
-def logout(request) :
-    auth.logout(request)
+def logout(request):
+    auth_logout(request)
     return redirect('main')
 
-#마이페이지
-def mypage(request, username) :
-        profile = get_object_or_404(User, username = username) 
-        return render(request, 'mypage.html', {'profile':profile})
+def mypage(request, username):
+    #get_user_model() => User 클래스를 호출함
+    people = get_object_or_404(get_user_model(), username = username)
+    return render(request, 'mypage.html', {'people':people})
 
+def update(request):
+    if request.method == 'POST':
+        user_change_form = CustomUserChangeForm(request.POST, instance=request.user)
+        if user_change_form.is_valid():
+            user_change_form.save()
+            return redirect('mypage',request.user.username)
+    else:
+            user_change_form = CustomUserChangeForm(instance = request.user)
+    return render (request, 'update.html', {'user_change_form':user_change_form})
+@login_required
+def password(request):
+    if request.method == 'POST':
+        password_change_form = PasswordChangeForm(request.user, request.POST)
+        # 키워드인자명을 함께 써줘도 가능
+        # password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
+        if password_change_form.is_valid():
+            password_change_form.save()
+            return redirect('main') 
+    else:
+        password_change_form = PasswordChangeForm(request.user)
+    return render(request, 'password_edit.html',{'password_change_form':password_change_form}) 
 
-#프로필 수정하기
-# def profile(request) :
-#         if request.method == 'POST' :
-#                 user_change_form = CustomUserChangeForm(request.POST, instance = request.user)
-#                 profile_form = ProfileForm(request.POST, request.Files, instance = request.user.profile) 
-
-#                 if user_change_form.is_valid() and profile_form.is_valid() :
-#                         user = user_change_form.save()
-#                         profile_form.save() 
-#                         return redirect('profile', user.username)
-                
-#                 return redirect('profile', user.username) 
-#         else : 
-#                 user_change_form = CustomUserChangeForm(instance = request.user) 
-#                 profile, create = Profile.objects.get_or_create(user = request.user)
-#                 profile_form = ProfileForm(instance = profile) 
-#                 return render (request, 'profile.html', {'user_change_form':user_change_form, 'profile_form':profile_form})
+def profile_edit(request):
+    profile  =request.user.profile
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, request.FILES, instance = profile)
+        if profile_form.is_valid():
+            profile_form.save()
+        return redirect('mypage' , request.user.username)
+    else:
+            profile_form = ProfileForm(instance = profile)
+    return render(request, 'profile_edit.html' , {'profile_form':profile_form})
+        

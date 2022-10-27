@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from free.forms import FreeForm, p_commentForm
 from main.forms import HashtagForm 
 from django.utils import timezone 
-from free.models import Free, p_comment, Free_Like
+from free.models import Free, p_comment
 from main.models import Hashtag 
 from django.http import request
 

@@ -23,24 +23,48 @@
         </ul>
 
         <ul class="nav_user">
-            {% if user.is_active %}
-            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
-            <li class="nav_position" id="nav_li">/</li>
-            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'logout' %}">로그아웃</a></li>
+            {% if user.is_authenticated %}
+            <h3> {{ user.username }}님 환영합니다.</h3>
+            
+            <a href="{% url 'logout' %}">로그아웃</a>
+            <span> <a href="{% url 'mypage' user.username %}">{{user.username }}의 페이지</a></span>
             {% else %}
-            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'login' %}">로그인</a></li>
-            <li class="nav_position" id="nav_li">/</li>
-            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'signup' %}">회원가입</a></li>
+            <a href="{% url 'signup' %}">회원가입</a>
+            <a href="{% url 'login' %}">로그인</a>
             {% endif %}
         </ul>
     </nav>
-
-	<ul class="nav_mypage">
-		<li><a id="now_mypage_nav" class="mypage_navv" href="">개인정보</a></li>
-		<li><a class="mypage_navv" href="{% url 'bookmark_list' %}">북마크 모아보기</a></li>
-		<li><a class="mypage_navv" href="">좋아요 모아보기</a></li>
-	</ul>
-
+    {% block container %}
+    <div>
+        {% if people.profile.p_image %}
+                <img src="{{ people.profile.p_image.url }}" width= 250, height = 250
+                     alt="{{ people.profile.p_image}}">
+                {% endif %}
+        <h1> {{ people.username }}</h1>
+        {% if user == people %}
+        <div>
+        <a href="{% url 'update' %}">계정정보수정</a>
+        </div>
+        {% endif %}
+        <div>
+            <h2>{{ people.profile.nickname }}</h2>
+        </div>
+        <div>
+            {{ people.profile.introduction }}
+        </div>
+        <div>
+            {% for cashbook in people.cashbook_set.all %}
+            <div>
+                <img src= "{{ cashbook.image_set.first.file.url }}" class="img-fluid"/>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if user == people %}
+        <div>
+            <a href="{% url 'profile_edit' %}">프로필 수정</a>
+            {% endif %}
+    {% endblock %}
     <div class="mypage_layout">
         <img class="back_mypage" src="{% static 'img/mypage/background_mypage.png' %}">
     </div>

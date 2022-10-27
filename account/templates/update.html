@@ -1,0 +1,13 @@
+
+
+{% block container %}
+
+<h1>개인정보 수정</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ user_change_form }}
+    <input type="submit" value="Submit"/>
+</form>
+<a href="{% url 'password' %}">비밀번호 변경</a>
+{% endblock %}

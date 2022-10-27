@@ -1,0 +1,12 @@
+
+{% block container %}
+
+<h1>프로필 업데이트 페이지</h1>
+
+<form method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ profile_form }}
+    <input type="submit" value="Submit"/>
+</form>
+
+{% endblock %}

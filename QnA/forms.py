@@ -11,3 +11,4 @@ class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['text', 'a_photo']
+        

@@ -1,19 +1,14 @@
-from typing_extensions import Required
-from django.contrib.auth.forms import UserChangeForm 
-from .models import Profile, User
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import get_user_model
+from .models import Profile
+from django import forms 
 
-class CustomUserChangeForm(UserChangeForm) :
-    password = None 
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['username', 'email', 'first_name','last_name']
 
-    class Meta :
-        model = User 
-        fields = ['username', 'email'] 
-
-
-class ProfileForm(models.Model) :
-    nickname = forms.CharField(label = "닉네임", required=False) 
-    profile_Img = forms.ImageField(lable = "프로필 사진", required=False) 
-
-    class Meta : 
-        model = Profile 
-        fields = ['nickname', 'profile_Img'] 
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['nickname', 'introduction', 'p_image']
