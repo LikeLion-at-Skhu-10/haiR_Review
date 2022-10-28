@@ -1,0 +1,9 @@
+<h1> 해시태그 목록 </h1>
+
+{% for hashtags in hashtags.all %} 
+
+    {{ hashtags.name }}<br>
+
+{% endfor %}
+
+<a href="{% url 'hashtag' %}">해시태그 추가하기</a>

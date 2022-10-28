@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <link rel="login logo" type="image/x-icon" href="{% static 'img/logo2.jpg' %}">
+    <title>로그인 페이지</title>
+</head>
+
+<body>
+    <br>
+    <div class="big_login">
+        <img class="first_logo" src="{% static 'img/account/logo3.png' %}">
+
+        {% block content %}
+        <form class="login" method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="hidden" name="csrfmiddlewaretoken"
+                value="ih0TIuQPHCCQQTQxLdyALE3Xtzu99Gf7KEsbYXCscCvQkQL8A2oa7TwMclRd1rn3">
+            <div class="password">
+                <p class="username_login">
+                    <label class="username_account" for="id_username">아이디 </label>
+                    <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
+                        maxlength="150" required="" id="id_username">
+                </p>
+
+                <p class="password_login">
+                    <label class="password_account" for="id_password">비밀번호 </label>
+                    <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+                </p>
+            </div>
+            <button class="purple" type="submit"> 로그인 </button>
+        </form>
+        <label class="checktext"><input style="display:inline" class="checkbox" type="checkbox" name="color"
+                value="blue">로그인 유지</label>
+        <h7 class="search" style="display:inline">아이디/비밀번호 찾기</h7>
+        <br>
+        <div class="first_come">
+            <h5 class="first" style="display:inline">머리뷰에 처음이시라면..!</h5>
+            <h5 style="display:inline" class="hui" action="{% url 'signup' %}">회원가입</h5>
+        </div>
+    </div>
+    {% endblock %}
+    <div class="mypage_layout">
+        <img class="back_mypage" src="{% static 'img/account/logo4.png' %}">
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,205 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Light';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-SemiBold';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    background-color:#8F87A7;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.navbar {
+    font-family: 'GangwonEdu_OTFBoldA';
+    /* 스크롤 내려도 navbar상단 고정 */
+    top: 0;
+    /* 스크롤 내려도 navbar상단 고정 */
+    padding-top: 0;
+    margin-top: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    grid-template-rows: 5vw;
+}
+
+#logo_leo {
+    width: 5vw;
+    height: auto;
+}
+
+.nav_menu {
+    grid-column: 1;
+    display: flex;
+    align-items: center;  /* 세로정렬 */
+    justify-self: left;
+}
+
+.nav_menu li {
+    margin-right: 6vw;
+} /* 단어 간격 */
+
+.nav_user {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    justify-self: right;
+    margin-right: 3vw;
+}
+
+.nav_user li {
+    margin-left: 1vw;
+} /* 단어 간격 */
+
+.nav_li {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.6vw;
+} /* 왜인지 부모요소에서 적용하면 안 먹어서... */
+
+#nav_li {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.6vw;
+} /* 왜인지 부모요소에서 적용하면 안 먹어서... */
+
+.nav_position {
+	padding-top: 0.7vw; /* a 태그 안에 넣으면 안 먹음. 왜? */
+}
+
+#nav_part a:hover {
+    color: #403964;
+}/* id로 하면 되고 class로 하면 왜 안 되지...? */
+
+ul {
+    list-style:none;
+}
+
+ul {
+    list-style:none;
+}
+
+.mypage_layout {
+	margin-top: 5vw;
+	display: grid;
+	grid-template-columns: 25% 25% 50%;
+    grid-template-rows: 80%;
+	height: 10vw;
+	width: 100%; /* 포지션이 absolute인지라 한쪽으로 쏠리는 바람에 */
+    position: absolute;
+    bottom: 20vw;
+}
+
+.back_mypage {
+	grid-column: 2;
+    display: flex;
+	width: 33vw;
+	height: auto;
+	bottom: 0;
+	position: fixed;
+	margin-left: 12vw;
+}
+
+.nav_mypage {
+	grid-column: 1;
+	font-family: 'GangwonEdu_OTFBoldA';
+	color: rgb(255, 255, 255);
+	margin-top: 13vw;
+	margin-left: 1vw;
+}
+
+
+.nav_mypage a {
+	text-decoration: none;
+    font-size: 2vw;
+	color: rgb(255, 255, 255);
+}
+
+.nav_mypage li {
+	margin-bottom: 4vw;
+}
+
+#now_mypage_nav {
+	color: #403964;
+}
+
+.book_layout {
+	grid-column: 3;
+	display: flex;
+	align-self: center;
+	justify-content: center;
+}
+
+.mypage_bookmark {
+	color: #ffffff;
+	background-color: #ffffff;
+	border-radius: 3em;
+	padding: 2vw;
+	height: 20vw;
+	width: 35vw;
+	position: relative;
+}
+
+#book_a {
+	color: #403964;
+	text-decoration: none;
+    font-size: 1.5vw;
+	font-family: 'Pretendard-Light';
+}
+
+
+.book_tr {
+	border-bottom: 2px solid #8F87A7;
+	padding: 1vw;
+}
+
+.book_u, .book_d {
+	background-color: #403964;
+	border-radius: 0.5em;
+	padding: 0.3vw;
+}
+
+#book_button {
+	background-color: #403964;
+	border-radius: 0.5em;
+	padding: 0.3vw;
+}
+
+.book_add {
+	margin-left: 3vw;
+	position: absolute;
+	left: 11vw;
+	bottom: 1.9vw;
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 1.5vw;
+}

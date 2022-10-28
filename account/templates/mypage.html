@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>머리뷰</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mypage.css' %}">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome-ie7.min.css">
+    <![endif]-->
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="nav_menu">
+            <li><a href="{% url 'main' %}"><img id="logo_leo" src="{% static 'img/mypage/logo2.png' %}"></a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'r_list' %}">미용실 익명 리뷰</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'q_list' %}">헤어 Q&A</a></li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'f_list' %}">자유게시판</a></li>
+			<li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'h_list' %}">해시태그</a></li>
+        </ul>
+
+        <ul class="nav_user">
+            {% if user.is_active %}
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'mypage' user.username %}">{{ user.username }}</a></li>
+            <li class="nav_position" id="nav_li">/</li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'logout' %}">로그아웃</a></li>
+            {% else %}
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'login' %}">로그인</a></li>
+            <li class="nav_position" id="nav_li">/</li>
+            <li class="nav_position" id="nav_part"><a class="nav_li" href="{% url 'signup' %}">회원가입</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+	<ul class="nav_mypage">
+		<li><a id="now_mypage_nav" class="mypage_navv" href="">개인정보</a></li>
+		<li><a class="mypage_navv" href="{% url 'bookmark_list' %}">북마크 모아보기</a></li>
+		<li><a class="mypage_navv" href="">좋아요 모아보기</a></li>
+	</ul>
+
+    <div class="mypage_layout">
+        <img class="back_mypage" src="{% static 'img/mypage/background_mypage.png' %}">
+    </div>
+</body>
+
+</html>

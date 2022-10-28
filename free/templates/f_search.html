@@ -1,0 +1,18 @@
+<h1>자유게시판 검색 페이지</h1>
+
+{% if f_searched %}        
+    <h1> 검색하신 {{ f_searched }} 에 관한 정보입니다. </h1>
+    <br>
+    {% for Free in f_serobj %}      
+        <h2>제목 : <a href="{% url 'f_detail' Free.id %}">{{Free.p_title}}</a></h2>
+        {{ Free.p_body }}
+        {{ Free.p_date }}
+        {{ Free.p_photo }}
+                    {% if Free.p_photo %}
+                    <img src = "{{ Free.p_photo.url }}" width = "250" height = "250" alt = "이미지 입니다."> 
+                    <br>
+                    {% endif %}
+                {% endfor %}
+        {% else %}       
+        <h1> 찾고 있는 검색어를 검색창에 입력해주세요. </h1>
+{% endif %}
